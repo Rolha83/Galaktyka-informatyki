@@ -1,0 +1,2 @@
+# Kod
+Strona informatyki
