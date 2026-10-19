@@ -29,16 +29,19 @@
         header {
             background: var(--primary);
             color: white;
-            padding: 20px;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             flex-wrap: wrap;
             gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        header h1 { margin: 0; font-size: 1.5em; }
+        header h1 { margin: 0; font-size: 1.4em; }
 
         .user-panel {
             background: rgba(255,255,255,0.15);
@@ -50,68 +53,111 @@
         }
 
         select {
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: 6px;
             border: none;
             font-weight: bold;
             cursor: pointer;
             font-size: 1em;
+            background: white;
+            color: #333;
         }
 
         .main-layout {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 0 15px;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
 
         main.content {
             background: var(--card);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        }
+
+        .lesson-intro {
+            background: #EBF5FB;
+            border-left: 6px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .lesson-intro h2 { margin-top: 0; color: var(--primary); }
+
+        /* Układ kafelków w siatce */
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .task-card {
             border: 1px solid #E2E8F0;
-            border-left: 5px solid var(--accent);
-            border-radius: 8px;
-            padding: 18px;
-            margin-bottom: 20px;
+            border-top: 5px solid var(--accent);
+            border-radius: 12px;
+            padding: 20px;
             background: #FAFAFA;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .task-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
         }
 
         .task-card.creative-card {
-            border-left-color: var(--creative);
+            border-top-color: var(--creative);
             background: #FAF5FF;
         }
 
         .badge {
             display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
             font-weight: bold;
             color: white;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            width: fit-content;
         }
 
         .b-easy { background: var(--success); }
         .b-medium { background: var(--warning); }
         .b-creative { background: var(--creative); }
 
+        .task-card h3 {
+            font-size: 1.1em;
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .task-card p {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
         .options label {
             display: block;
             background: white;
-            padding: 10px 14px;
+            padding: 8px 12px;
             margin: 6px 0;
             border-radius: 6px;
             border: 1px solid #CBD5E1;
             cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.15s;
         }
 
-        .options label:hover { background: #F1F5F9; }
+        .options label:hover { background: #EDF2F7; }
 
-        textarea, input[type="text"] {
+        textarea {
             width: 100%;
             padding: 10px;
             border-radius: 6px;
@@ -119,216 +165,262 @@
             box-sizing: border-box;
             margin-top: 8px;
             font-family: inherit;
+            font-size: 0.9em;
+            resize: vertical;
         }
 
         .btn-submit {
             background: var(--accent);
             color: white;
-            font-size: 1.1em;
+            font-size: 1.2em;
             font-weight: bold;
-            padding: 12px 24px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             width: 100%;
-            margin-top: 15px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+            transition: background 0.2s;
         }
 
         .btn-submit:hover { background: #2980B9; }
 
         .result-box {
             display: none;
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 10px;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
             background: #F8FAFC;
             border: 2px solid #CBD5E1;
+            text-align: center;
         }
 
-        .score { font-size: 2em; font-weight: bold; text-align: center; }
+        .score { font-size: 2.2em; font-weight: bold; margin-bottom: 15px; }
+        
+        #feedbackList {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Bezpieczeństwo w Sieci i Fake News – Lekcja</h1>
+    <h1>🛡️ Bezpieczeństwo w Sieci i Fake News – Klasa 4</h1>
     <div class="user-panel">
-        <label for="studentSelect"><strong>Twój Login (Uczeń):</strong></label>
+        <label for="studentSelect"><strong>Twój Kod Ucznia:</strong></label>
         <select id="studentSelect">
-            <option value="">-- Wybierz swój kod --</option>
+            <option value="">-- Wybierz kod --</option>
         </select>
     </div>
 </header>
 
 <div class="main-layout">
     <main class="content">
-        <h2>Zadania z podręcznika (str. 34–40)</h2>
-        <p><strong>Cel lekcji:</strong> Nauczysz się rozpoznawać zagrożenia w internecie, phising, fake newsy oraz chronić swoje dane i tworzyć silne hasła.</p>
-        <p><i>Odpowiedz na wszystkie 15 zadań, aby sprawdzić swoją wiedzę. Każde zadanie jest oceniane automatycznie!</i></p>
+        <div class="lesson-intro">
+            <h2>Cel lekcji (podręcznik str. 34–40)</h2>
+            <p>Nauczysz się dzisiaj rozpoznawać zagrożenia w internecie, phising, fake newsy, a także dowiesz się, jak chronić swoje dane i tworzyć silne hasła. Rozwiąż poniższe 15 zadań i sprawdź swój wynik procentowy!</p>
+        </div>
 
         <form id="securityForm">
+            <div class="tasks-grid">
 
-            <!-- Zadanie 1 -->
-            <div class="task-card">
-                <span class="badge b-easy">Poziom 1: Podstawy</span>
-                <h3>1. Czym jest phishing?</h3>
-                <p>Jak najczęściej próbuje się wyłudzić poufne dane (np. hasła)?</p>
-                <div class="options">
-                    <label><input type="radio" name="q1" value="A"> Przez fałszywe wiadomości e-mail lub SMS podszywające się pod instytucje</label>
-                    <label><input type="radio" name="q1" value="B"> Poprzez tradycyjny list pocztowy</label>
-                    <label><input type="radio" name="q1" value="C"> Zostawiając kartkę na ławce szkolnej</label>
+                <!-- Zadanie 1 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-easy">Poziom 1: Podstawy</span>
+                        <h3>1. Czym jest phishing?</h3>
+                        <p>Jak najczęściej próbuje się wyłudzić poufne dane (np. hasła)?</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="A"> Przez fałszywe wiadomości podszywające się pod instytucje</label>
+                        <label><input type="radio" name="q1" value="B"> Poprzez tradycyjny list pocztowy</label>
+                        <label><input type="radio" name="q1" value="C"> Zostawiając kartkę na ławce szkolnej</label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Zadanie 2 -->
-            <div class="task-card">
-                <span class="badge b-easy">Poziom 1: Podstawy</span>
-                <h3>2. Silne hasło</h3>
-                <p>Które hasło jest najbardziej bezpieczne?</p>
-                <div class="options">
-                    <label><input type="radio" name="q2" value="A"> 123456</label>
-                    <label><input type="radio" name="q2" value="B"> imie123</label>
-                    <label><input type="radio" name="q2" value="C"> K!r$t3k#2026!Pies</label>
+                <!-- Zadanie 2 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-easy">Poziom 1: Podstawy</span>
+                        <h3>2. Silne hasło</h3>
+                        <p>Które hasło jest najbardziej bezpieczne?</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="A"> 123456</label>
+                        <label><input type="radio" name="q2" value="B"> imie123</label>
+                        <label><input type="radio" name="q2" value="C"> K!r$t3k#2026!Pies</label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Zadanie 3 -->
-            <div class="task-card">
-                <span class="badge b-medium">Poziom 2: Analiza</span>
-                <h3>3. Rozpoznawanie Fake News</h3>
-                <p>Co zrobić, gdy zobaczysz w internecie szokującą wiadomość od nieznanego źródła?</p>
-                <div class="options">
-                    <label><input type="radio" name="q3" value="A"> Natychmiast wysłać ją wszystkim znajomym</label>
-                    <label><input type="radio" name="q3" value="B"> Sprawdzić informację w innych, wiarygodnych źródłach</label>
-                    <label><input type="radio" name="q3" value="C"> Uwierzyć na słowo</label>
+                <!-- Zadanie 3 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-medium">Poziom 2: Analiza</span>
+                        <h3>3. Rozpoznawanie Fake News</h3>
+                        <p>Co zrobić, gdy zobaczysz szokującą wiadomość od nieznanego źródła?</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="A"> Natychmiast wysłać ją wszystkim znajomym</label>
+                        <label><input type="radio" name="q3" value="B"> Sprawdzić informację w innych, wiarygodnych źródłach</label>
+                        <label><input type="radio" name="q3" value="C"> Uwierzyć na słowo</label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Zadanie 4 -->
-            <div class="task-card">
-                <span class="badge b-medium">Poziom 2: Analiza</span>
-                <h3>4. Ochrona danych osobowych</h3>
-                <p>Którą informację O WOLNO podawać publicznie w mediach społecznościowych?</p>
-                <div class="options">
-                    <label><input type="radio" name="q4" value="A"> Swój numer PESEL i adres domowy</label>
-                    <label><input type="radio" name="q4" value="B"> Nazwę ulubionej gry lub książki</label>
-                    <label><input type="radio" name="q4" value="C"> Hasło do poczty e-mail</label>
+                <!-- Zadanie 4 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-medium">Poziom 2: Analiza</span>
+                        <h3>4. Ochrona danych osobowych</h3>
+                        <p>Którą informację WOLNO podawać publicznie w sieci?</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="A"> Swój numer PESEL i adres domowy</label>
+                        <label><input type="radio" name="q4" value="B"> Nazwę ulubionej gry lub książki</label>
+                        <label><input type="radio" name="q4" value="C"> Hasło do poczty e-mail</label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Zadanie 5 -->
-            <div class="task-card">
-                <span class="badge b-medium">Poziom 2: Analiza</span>
-                <h3>5. Czym jest Deepfake?</h3>
-                <p>Pojęcie Deepfake oznacza:</p>
-                <div class="options">
-                    <label><input type="radio" name="q5" value="A"> Głębokie nurkowanie w basenie</label>
-                    <label><input type="radio" name="q5" value="B"> Zmodyfikowany cyfrowo obraz lub film, w którym ktoś udaje kogoś innego</label>
-                    <label><input type="radio" name="q5" value="C"> Awarię karty graficznej w komputerze</label>
+                <!-- Zadanie 5 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-medium">Poziom 2: Analiza</span>
+                        <h3>5. Czym jest Deepfake?</h3>
+                        <p>Pojęcie Deepfake oznacza:</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="A"> Głębokie nurkowanie w basenie</label>
+                        <label><input type="radio" name="q5" value="B"> Zmodyfikowany cyfrowo obraz lub film, w którym ktoś udaje kogoś innego</label>
+                        <label><input type="radio" name="q5" value="C"> Awarię karty graficznej w komputerze</label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Zadanie 6 -->
-            <div class="task-card">
-                <span class="badge b-easy">Poziom 1: Podstawy</span>
-                <h3>6. Bezpieczny kontakt w sieci</h3>
-                <p>Co należy zrobić, gdy ktoś w grze online pisze obraźliwe wiadomości i sprawia, że czujesz się niekomfortowo?</p>
-                <div class="options">
-                    <label><input type="radio" name="q6" value="A"> Odpisać jeszcze gorzej</label>
-                    <label><input type="radio" name="q6" value="B"> Zablokować użytkownika i powiedzieć o tym dorosłemu</label>
-                    <label><input type="radio" name="q6" value="C"> Wyłączyć komputer i nikomu o tym nie mówić</label>
+                <!-- Zadanie 6 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-easy">Poziom 1: Podstawy</span>
+                        <h3>6. Bezpieczny kontakt w sieci</h3>
+                        <p>Co zrobić, gdy ktoś w grze online pisze obraźliwe wiadomości?</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="A"> Odpisać jeszcze gorzej</label>
+                        <label><input type="radio" name="q6" value="B"> Zablokować użytkownika i powiedzieć o tym dorosłemu</label>
+                        <label><input type="radio" name="q6" value="C"> Wyłączyć komputer i nikomu nie mówić</label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Zadanie 7 -->
-            <div class="task-card">
-                <span class="badge b-medium">Poziom 2: Analiza</span>
-                <h3>7. Prywatność profilu</h3>
-                <p>Jakie ustawienia prywatności najlepiej wybrać na portalach społecznościowych?</p>
-                <div class="options">
-                    <label><input type="radio" name="q7" value="A"> Publiczne – widoczne dla absolutnie każdego</label>
-                    <label><input type="radio" name="q7" value="B"> Prywatne – widoczne tylko dla zweryfikowanych znajomych</label>
-                    <label><input type="radio" name="q7" value="C"> Brak jakichkolwiek ustawień</label>
+                <!-- Zadanie 7 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-medium">Poziom 2: Analiza</span>
+                        <h3>7. Prywatność profilu</h3>
+                        <p>Jakie ustawienia prywatności najlepiej wybrać na portalach?</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="A"> Publiczne – widoczne dla każdego</label>
+                        <label><input type="radio" name="q7" value="B"> Prywatne – widoczne tylko dla zaufanych znajomych</label>
+                        <label><input type="radio" name="q7" value="C"> Brak jakichkolwiek ustawień</label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Zadanie 8 -->
-            <div class="task-card">
-                <span class="badge b-easy">Poziom 1: Podstawy</span>
-                <h3>8. Pobieranie plików</h3>
-                <p>Skąd najbezpieczniej pobierać aplikacje i gry na komputer lub telefon?</p>
-                <div class="options">
-                    <label><input type="radio" name="q8" value="A"> Z oficjalnych sklepów (np. Google Play, App Store, strony producentów)</label>
-                    <label><input type="radio" name="q8" value="B"> Z przypadkowych linków wysłanych przez nieznajomych w czacie</label>
-                    <label><input type="radio" name="q8" value="C"> Z podejrzanych stron z „darmowymi” grami</label>
+                <!-- Zadanie 8 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-easy">Poziom 1: Podstawy</span>
+                        <h3>8. Pobieranie plików</h3>
+                        <p>Skąd najbezpieczniej pobierać aplikacje i gry?</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="A"> Z oficjalnych sklepów (np. Google Play, App Store, strony producentów)</label>
+                        <label><input type="radio" name="q8" value="B"> Z przypadkowych linków na czacie</label>
+                        <label><input type="radio" name="q8" value="C"> Z podejrzanych stron z „darmowymi” grami</label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Zadanie 9 -->
-            <div class="task-card">
-                <span class="badge b-medium">Poziom 2: Analiza</span>
-                <h3>9. Łańcuszki szczęścia</h3>
-                <p>Otrzymujesz wiadomość: „Wyślij ten tekst do 10 osób, inaczej spotka Cię pech!”. Co robisz?</p>
-                <div class="options">
-                    <label><input type="radio" name="q9" value="A"> Wysyłam natychmiast do wszystkich</label>
-                    <label><input type="radio" name="q9" value="B"> Ignoruję i kasuję wiadomość, bo to mit</label>
-                    <label><input type="radio" name="q9" value="C"> Płacę określoną kwotę pieniędzy</label>
+                <!-- Zadanie 9 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-medium">Poziom 2: Analiza</span>
+                        <h3>9. Łańcuszki szczęścia</h3>
+                        <p>Otrzymujesz wiadomość: „Wyślij to do 10 osób, bo spotka Cię pech!”. Co robisz?</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="A"> Wysyłam natychmiast do wszystkich</label>
+                        <label><input type="radio" name="q9" value="B"> Ignoruję i kasuję wiadomość, bo to mit</label>
+                        <label><input type="radio" name="q9" value="C"> Płacę określoną kwotę pieniędzy</label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Zadanie 10 -->
-            <div class="task-card">
-                <span class="badge b-easy">Poziom 1: Podstawy</span>
-                <h3>10. Cyberprzemoc (Cyberbullying)</h3>
-                <p>Czym jest cyberprzemoc?</p>
-                <div class="options">
-                    <label><input type="radio" name="q10" value="A"> Szybkim graniem w gry wieloosobowe</label>
-                    <label><input type="radio" name="q10" value="B"> Nękaniem, wyzywaniem lub ośmieszaniem innych za pomocą internetu i telefonów</label>
-                    <label><input type="radio" name="q10" value="C"> Awarią sieci Wi-Fi w szkole</label>
+                <!-- Zadanie 10 -->
+                <div class="task-card">
+                    <div>
+                        <span class="badge b-easy">Poziom 1: Podstawy</span>
+                        <h3>10. Cyberprzemoc</h3>
+                        <p>Czym jest cyberprzemoc?</p>
+                    </div>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="A"> Szybkim graniem w gry wieloosobowe</label>
+                        <label><input type="radio" name="q10" value="B"> Nękaniem, wyzywaniem lub ośmieszaniem innych przez internet</label>
+                        <label><input type="radio" name="q10" value="C"> Awarią sieci Wi-Fi w szkole</label>
+                    </div>
                 </div>
+
+                <!-- Zadanie 11 -->
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>11. Silne hasło</h3>
+                        <p>Wpisz swoje bezpieczne hasło stworzone metodą zdaniową:</p>
+                    </div>
+                    <textarea id="q11" rows="2" placeholder="Np. LubieKotki2026!"></textarea>
+                </div>
+
+                <!-- Zadanie 12 -->
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>12. Sposób na Fake News</h3>
+                        <p>Napisz w jednym zdaniu, po czym poznać zmyślony artykuł:</p>
+                    </div>
+                    <textarea id="q12" rows="2" placeholder="Twoja odpowiedź..."></textarea>
+                </div>
+
+                <!-- Zadanie 13 -->
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>13. Reagowanie na zagrożenie</h3>
+                        <p>Co zrobisz, gdy dostaniesz dziwny e-mail z prośbą o hasło?</p>
+                    </div>
+                    <textarea id="q13" rows="2" placeholder="Twoja odpowiedź..."></textarea>
+                </div>
+
+                <!-- Zadanie 14 -->
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>14. Ograniczone zaufanie</h3>
+                        <p>Dlaczego nie ufać nieznajomym oferującym darmowe bonusy?</p>
+                    </div>
+                    <textarea id="q14" rows="2" placeholder="Twoja odpowiedź..."></textarea>
+                </div>
+
+                <!-- Zadanie 15 -->
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>15. Złota zasada</h3>
+                        <p>Ułóż krótkie motto zachęcające do bezpiecznej pracy w sieci:</p>
+                    </div>
+                    <textarea id="q15" rows="2" placeholder="Twoje motto..."></textarea>
+                </div>
+
             </div>
 
-            <!-- Zadanie 11 -->
-            <div class="task-card creative-card">
-                <span class="badge b-creative">Poziom 3: Zadanie Twórcze</span>
-                <h3>11. Tworzenie silnego hasła metodą zdaniową</h3>
-                <p>Wymyśl zdanie o swoim hobby, usuń spacje i zamień wybrane litery na cyfry. Wpisz swoje bezpieczne hasło:</p>
-                <textarea id="q11" rows="2" placeholder="Np. LubieKotkiIProgramowanie2026!"></textarea>
-            </div>
-
-            <!-- Zadanie 12 -->
-            <div class="task-card creative-card">
-                <span class="badge b-creative">Poziom 3: Zadanie Twórcze</span>
-                <h3>12. Sposób na Fake News</h3>
-                <p>Napisz w jednym zdaniu, po czym najprościej poznać, że artykuł w internecie może być zmyślony:</p>
-                <textarea id="q12" rows="2" placeholder="Wpisz swoją odpowiedź..."></textarea>
-            </div>
-
-            <!-- Zadanie 13 -->
-            <div class="task-card creative-card">
-                <span class="badge b-creative">Poziom 3: Zadanie Twórcze</span>
-                <h3>13. Reagowanie na zagrożenie</h3>
-                <p>Co zrobisz, jeśli dostaniesz dziwny e-mail z prośbą o podanie hasła do konta w grze?</p>
-                <textarea id="q13" rows="2" placeholder="Wpisz swoją krótką reakcję..."></textarea>
-            </div>
-
-            <!-- Zadanie 14 -->
-            <div class="task-card creative-card">
-                <span class="badge b-creative">Poziom 3: Zadanie Twórcze</span>
-                <h3>14. Zasada ograniczonego zaufania</h3>
-                <p>Dlaczego nie należy ufać nowo poznanym w grze osobom, które proponują wysłanie „darmowych” bonusów?</p>
-                <textarea id="q14" rows="2" placeholder="Wyjaśnij własnymi słowami..."></textarea>
-            </div>
-
-            <!-- Zadanie 15 -->
-            <div class="task-card creative-card">
-                <span class="badge b-creative">Poziom 3: Zadanie Twórcze</span>
-                <h3>15. Złota zasada bezpieczeństwa</h3>
-                <p>Ułóż krótkie, jednozdaniowe hasło (motto) zachęcające kolegów do bezpiecznego korzystania z sieci:</p>
-                <textarea id="q15" rows="2" placeholder="Twoje motto..."></textarea>
-            </div>
-
-            <button type="button" class="btn-submit" onclick="gradeAll()">Sprawdź wyniki całej lekcji</button>
+            <button type="button" class="btn-submit" onclick="gradeAll()">Sprawdź wynik całej lekcji</button>
         </form>
 
         <div id="resultBox" class="result-box">
@@ -352,15 +444,15 @@
     function gradeAll() {
         const student = select.value;
         if (!student) {
-            alert('Proszę wybrać swój kod ucznia (np. A01) z listy rozwijanej na górze strony!');
+            alert('Wybierz najpierw swój kod ucznia (np. A01) z listy rozwijanej u góry strony!');
+            select.focus();
             return;
         }
 
         let score = 0;
         let weakPoints = [];
 
-        // Testowe odpowiedzi jednokrotne (każde ma wlutowane 6.66 pkt, łącznie 10 pytań = ~66.6 pkt, a 5 twórczych po ~6.66 = 33.4 pkt, razem 100%)
-        const answers = {
+        const correctAnswers = {
             q1: 'A',
             q2: 'C',
             q3: 'B',
@@ -373,17 +465,17 @@
             q10: 'B'
         };
 
-        // Sprawdzanie pytań 1-10
+        // Sprawdzanie pytań testowych (1-10)
         for (let i = 1; i <= 10; i++) {
             let checked = document.querySelector(`input[name="q${i}"]:checked`);
-            if (checked && checked.value === answers['q'] {
+            if (checked && checked.value === correctAnswers[`q${i}`]) {
                 score += 6.66;
             } else {
                 weakPoints.push(`Zadanie ${i} (wymaga powtórki teorii)`);
             }
         }
 
-        // Sprawdzanie pytań twórczych 11-15 (ocena na podstawie długości wpisu > 5 znaków)
+        // Sprawdzanie zadań twórczych (11-15)
         for (let i = 11; i <= 15; i++) {
             let val = document.getElementById(`q${i}`).value.trim();
             if (val.length >= 5) {
@@ -393,19 +485,16 @@
             }
         }
 
-        // Zaokrąglenie do pełnych procentów
         let finalScore = Math.round(score);
         if (finalScore > 100) finalScore = 100;
 
-        // Wyświetlanie wyników
         const resBox = document.getElementById('resultBox');
         const scoreDisp = document.getElementById('scoreDisplay');
         const feedbackList = document.getElementById('feedbackList');
 
         resBox.style.display = 'block';
-        scoreDisp.innerText = `Uczeń ${student} – Wynik: ${finalScore}%`;
+        scoreDisp.innerText = `Uczeń ${student} – Twój wynik: ${finalScore}%`;
         
-        // Kolor w zależności od wyniku
         if (finalScore >= 80) {
             scoreDisp.style.color = '#2ECC71';
         } else if (finalScore >= 50) {
@@ -418,11 +507,11 @@
         if (weakPoints.length === 0 || finalScore >= 95) {
             let li = document.createElement('li');
             li.style.color = 'green';
-            li.innerHTML = '<strong>Rewelacja!</strong> Perfekcyjnie opanowałeś zasady bezpieczeństwa i walki z fake newsami!';
+            li.innerHTML = '<strong>Rewelacja!</strong> Perfekcyjnie opanowałeś materiał z bezpieczeństwa i walki z fake newsami!';
             feedbackList.appendChild(li);
         } else {
             let headerLi = document.createElement('li');
-            headerLi.innerHTML = '<strong>Miejsca do poprawy lub ponownego przemyślenia:</strong>';
+            headerLi.innerHTML = '<strong>Miejsca do powtórzenia:</strong>';
             feedbackList.appendChild(headerLi);
 
             weakPoints.forEach(item => {
@@ -433,7 +522,6 @@
             });
         }
         
-        // Przewinięcie do wyniku
         resBox.scrollIntoView({ behavior: 'smooth' });
     }
 </script>
