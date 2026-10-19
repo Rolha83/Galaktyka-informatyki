@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informatyka Klasa 4 – Platforma Edukacyjna</title>
+    <title>Informatyka Klasa 4 – Portal Lekcyjny</title>
     <style>
         :root {
             --primary: #2C3E50;
@@ -14,6 +14,10 @@
             --creative: #9B59B6;
             --bg: #F4F6F9;
             --card: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -27,19 +31,24 @@
         header {
             background: var(--primary);
             color: white;
-            padding: 15px 20px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        header h1 { margin: 0; font-size: 1.4em; }
+        header h1 { margin: 0; font-size: 1.5em; }
 
         .user-panel {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
             padding: 8px 15px;
             border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         select {
@@ -48,6 +57,7 @@
             border: none;
             font-weight: bold;
             cursor: pointer;
+            font-size: 1em;
         }
 
         .main-layout {
@@ -188,7 +198,7 @@
 <header>
     <h1>Informatyka Klasa 4 – Portal Lekcyjny</h1>
     <div class="user-panel">
-        <label for="studentSelect"><strong>Uczeń: </strong></label>
+        <label for="studentSelect"><strong>Uczeń:</strong></label>
         <select id="studentSelect">
             <option value="">-- Wybierz kod --</option>
         </select>
@@ -208,27 +218,29 @@
         <!-- LEKCJA 1 -->
         <div id="m1" class="module active">
             <h2>Lekcja 1: Bezpieczni w cyfrowym świecie (str. 34–40)</h2>
-            <p>Przeczytaj podręcznik i rozwiąż zadania różnego poziomu trudności.</p>
+            <p><strong>Cel lekcji:</strong> Nauczysz się rozpoznawać zagrożenia w internecie, chronić swoje dane oraz tworzyć bezpieczne hasła.</p>
+            <p><i>Przeczytaj materiał w podręczniku i wykonaj poniższe zadania o różnym stopniu trudności.</i></p>
 
             <form id="formM1">
                 <div class="task-card">
                     <span class="badge b-easy">Poziom 1: Podstawy</span>
-                    <h3>1. Phishing / Wyłudzanie danych</h3>
-                    <p>Po czym najczęściej rozpoznasz niebezpieczną wiadomość (str. 35)?</p>
+                    <h3>1. Phishing / Wyłudzanie danych (str. 35)</h3>
+                    <p>Po czym najczęściej rozpoznasz niebezpieczną wiadomość e-mail lub SMS?</p>
                     <div class="options">
                         <label><input type="radio" name="m1_q1" value="A"> Informuje o wygranej w konkursie, w którym nie brało się udziału</label>
-                        <label><input type="radio" name="m1_q1" value="B"> Jest napisana przez kolegę z ławki</label>
-                        <label><input type="radio" name="m1_q1" value="C"> Zawiera plan lekcji na jutro</label>
+                        <label><input type="radio" name="m1_q1" value="B"> Jest napisana przez kolegę z klasy</label>
+                        <label><input type="radio" name="m1_q1" value="C"> Zawiera plan lekcji na jutrzejszy dzień</label>
                     </div>
                 </div>
 
                 <div class="task-card">
                     <span class="badge b-medium">Poziom 2: Analiza pojęć</span>
-                    <h3>2. Co oznacza pojęcie Deepfake (str. 36)?</h3>
+                    <h3>2. Pojęcie Deepfake (str. 36)</h3>
+                    <p>Co oznacza pojęcie Deepfake?</p>
                     <div class="options">
-                        <label><input type="radio" name="m1_q2" value="A"> Trudną grę zręcznościową</label>
-                        <label><input type="radio" name="m1_q2" value="B"> Fałszywe, ale realistyczne zdjęcie, film lub nagranie głosu stworzone przez komputer</label>
-                        <label><input type="radio" name="m1_q2" value="C"> Szybkie połączenie internetowe</label>
+                        <label><input type="radio" name="m1_q2" value="A"> Trudną grę zręcznościową dla młodzieży</label>
+                        <label><input type="radio" name="m1_q2" value="B"> Fałszywe, ale bardzo realistyczne zdjęcie, film lub nagranie głosu stworzone przez komputer</label>
+                        <label><input type="radio" name="m1_q2" value="C"> Darmowy program do rysowania grafiki</label>
                     </div>
                 </div>
 
