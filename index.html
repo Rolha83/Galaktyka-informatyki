@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informatyka Klasa 4 – Portal Lekcyjny</title>
+    <title>Informatyka Klasa 4 – Bezpieczeństwo w Sieci</title>
     <style>
         :root {
             --primary: #2C3E50;
@@ -16,9 +16,7 @@
             --card: #FFFFFF;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -61,60 +59,17 @@
         }
 
         .main-layout {
-            display: flex;
-            max-width: 1200px;
+            max-width: 900px;
             margin: 20px auto;
-            gap: 20px;
             padding: 0 15px;
         }
 
-        nav.sidebar {
-            width: 280px;
-            background: var(--card);
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            height: fit-content;
-        }
-
-        nav.sidebar h3 {
-            margin-top: 0;
-            color: var(--primary);
-            border-bottom: 2px solid #ECF0F1;
-            padding-bottom: 10px;
-        }
-
-        .nav-btn {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: none;
-            border: none;
-            padding: 12px 10px;
-            margin: 5px 0;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95em;
-            color: #555;
-            transition: all 0.2s;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--accent);
-            color: white;
-            font-weight: bold;
-        }
-
         main.content {
-            flex: 1;
             background: var(--card);
             border-radius: 12px;
             padding: 25px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-
-        .module { display: none; }
-        .module.active { display: block; }
 
         .task-card {
             border: 1px solid #E2E8F0;
@@ -196,223 +151,79 @@
 <body>
 
 <header>
-    <h1>Informatyka Klasa 4 – Portal Lekcyjny</h1>
+    <h1>Bezpieczeństwo w Sieci i Fake News – Lekcja</h1>
     <div class="user-panel">
-        <label for="studentSelect"><strong>Uczeń:</strong></label>
+        <label for="studentSelect"><strong>Twój Login (Uczeń):</strong></label>
         <select id="studentSelect">
-            <option value="">-- Wybierz kod --</option>
+            <option value="">-- Wybierz swój kod --</option>
         </select>
     </div>
 </header>
 
 <div class="main-layout">
-    <nav class="sidebar">
-        <h3>Spis Lekcji</h3>
-        <button class="nav-btn active" onclick="showModule('m1', this)">1. Bezpieczni w sieci</button>
-        <button class="nav-btn" onclick="showModule('m2', this)">2. Sprzęt i BHP</button>
-        <button class="nav-btn" onclick="showModule('m3', this)">3. Grafika w Paint</button>
-    </nav>
-
     <main class="content">
+        <h2>Zadania z podręcznika (str. 34–40)</h2>
+        <p><strong>Cel lekcji:</strong> Nauczysz się rozpoznawać zagrożenia w internecie, phising, fake newsy oraz chronić swoje dane i tworzyć silne hasła.</p>
+        <p><i>Odpowiedz na wszystkie 15 zadań, aby sprawdzić swoją wiedzę. Każde zadanie jest oceniane automatycznie!</i></p>
 
-        <!-- LEKCJA 1 -->
-        <div id="m1" class="module active">
-            <h2>Lekcja 1: Bezpieczni w cyfrowym świecie (str. 34–40)</h2>
-            <p><strong>Cel lekcji:</strong> Nauczysz się rozpoznawać zagrożenia w internecie, chronić swoje dane oraz tworzyć bezpieczne hasła.</p>
-            <p><i>Przeczytaj materiał w podręczniku i wykonaj poniższe zadania o różnym stopniu trudności.</i></p>
+        <form id="securityForm">
 
-            <form id="formM1">
-                <div class="task-card">
-                    <span class="badge b-easy">Poziom 1: Podstawy</span>
-                    <h3>1. Phishing / Wyłudzanie danych (str. 35)</h3>
-                    <p>Po czym najczęściej rozpoznasz niebezpieczną wiadomość e-mail lub SMS?</p>
-                    <div class="options">
-                        <label><input type="radio" name="m1_q1" value="A"> Informuje o wygranej w konkursie, w którym nie brało się udziału</label>
-                        <label><input type="radio" name="m1_q1" value="B"> Jest napisana przez kolegę z klasy</label>
-                        <label><input type="radio" name="m1_q1" value="C"> Zawiera plan lekcji na jutrzejszy dzień</label>
-                    </div>
+            <!-- Zadanie 1 -->
+            <div class="task-card">
+                <span class="badge b-easy">Poziom 1: Podstawy</span>
+                <h3>1. Czym jest phishing?</h3>
+                <p>Jak najczęściej próbuje się wyłudzić poufne dane (np. hasła)?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="A"> Przez fałszywe wiadomości e-mail lub SMS podszywające się pod instytucje</label>
+                    <label><input type="radio" name="q1" value="B"> Poprzez tradycyjny list pocztowy</label>
+                    <label><input type="radio" name="q1" value="C"> Zostawiając kartkę na ławce szkolnej</label>
                 </div>
-
-                <div class="task-card">
-                    <span class="badge b-medium">Poziom 2: Analiza pojęć</span>
-                    <h3>2. Pojęcie Deepfake (str. 36)</h3>
-                    <p>Co oznacza pojęcie Deepfake?</p>
-                    <div class="options">
-                        <label><input type="radio" name="m1_q2" value="A"> Trudną grę zręcznościową dla młodzieży</label>
-                        <label><input type="radio" name="m1_q2" value="B"> Fałszywe, ale bardzo realistyczne zdjęcie, film lub nagranie głosu stworzone przez komputer</label>
-                        <label><input type="radio" name="m1_q2" value="C"> Darmowy program do rysowania grafiki</label>
-                    </div>
-                </div>
-
-                <div class="task-card creative-card">
-                    <span class="badge b-creative">Poziom 3: Zadanie Twórcze</span>
-                    <h3>3. Tworzenie bezpiecznego hasła (str. 39)</h3>
-                    <p>Zastosuj regułę z podręcznika: wymyśl zdanie (np. o swoim hobby), usuń spacje i zamień wybrane litery na znaki lub cyfry. Wpisz zdanie oraz stworzone z niego silne hasło:</p>
-                    <textarea id="m1_q3" rows="3" placeholder="Zdanie: Lubię jeździć na rowerze w maju! -> Hasło: LubieJezdzicNaRowerzeWMaju!2026"></textarea>
-                </div>
-
-                <button type="button" class="btn-submit" onclick="gradeM1()">Sprawdź wynik Lekcji 1</button>
-            </form>
-
-            <div id="resM1" class="result-box">
-                <div id="scoreM1" class="score"></div>
-                <ul id="feedbackM1"></ul>
             </div>
-        </div>
 
-        <!-- LEKCJA 2 -->
-        <div id="m2" class="module">
-            <h2>Lekcja 2: Komputer i zasady BHP</h2>
-            <form id="formM2">
-                <div class="task-card">
-                    <span class="badge b-easy">Poziom 1</span>
-                    <h3>1. Urządzenia wprowadzające</h3>
-                    <p>Które urządzenie pozwala wpisywać tekst do komputera?</p>
-                    <div class="options">
-                        <label><input type="radio" name="m2_q1" value="A"> Monitor</label>
-                        <label><input type="radio" name="m2_q1" value="B"> Klawiatura</label>
-                        <label><input type="radio" name="m2_q1" value="C"> Drukarka</label>
-                    </div>
+            <!-- Zadanie 2 -->
+            <div class="task-card">
+                <span class="badge b-easy">Poziom 1: Podstawy</span>
+                <h3>2. Silne hasło</h3>
+                <p>Które hasło jest najbardziej bezpieczne?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="A"> 123456</label>
+                    <label><input type="radio" name="q2" value="B"> imie123</label>
+                    <label><input type="radio" name="q2" value="C"> K!r$t3k#2026!Pies</label>
                 </div>
-
-                <div class="task-card creative-card">
-                    <span class="badge b-creative">Poziom 3: Zadanie Twórcze</span>
-                    <h3>2. Zasady Zdrowej Pracy</h3>
-                    <p>Opisz 2 zasady BHP, które chronią Twój wzrok i kręgosłup podczas pracy przy biurku:</p>
-                    <textarea id="m2_q2" rows="3" placeholder="Wpisz zasady..."></textarea>
-                </div>
-
-                <button type="button" class="btn-submit" onclick="gradeM2()">Sprawdź wynik Lekcji 2</button>
-            </form>
-
-            <div id="resM2" class="result-box">
-                <div id="scoreM2" class="score"></div>
-                <ul id="feedbackM2"></ul>
             </div>
-        </div>
 
-        <!-- LEKCJA 3 -->
-        <div id="m3" class="module">
-            <h2>Lekcja 3: Edytor graficzny Paint</h2>
-            <form id="formM3">
-                <div class="task-card">
-                    <span class="badge b-medium">Poziom 2</span>
-                    <h3>1. Wypełnianie kolorem</h3>
-                    <p>Jakim narzędziem zamalujesz cały zamknięty kształt w programie Paint?</p>
-                    <div class="options">
-                        <label><input type="radio" name="m3_q1" value="A"> Ołówek</label>
-                        <label><input type="radio" name="m3_q1" value="B"> Kubełek z farbą (Wypełnienie kolorem)</label>
-                        <label><input type="radio" name="m3_q1" value="C"> Gumka</label>
-                    </div>
+            <!-- Zadanie 3 -->
+            <div class="task-card">
+                <span class="badge b-medium">Poziom 2: Analiza</span>
+                <h3>3. Rozpoznawanie Fake News</h3>
+                <p>Co zrobić, gdy zobaczysz w internecie szokującą wiadomość od nieznanego źródła?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="A"> Natychmiast wysłać ją wszystkim znajomym</label>
+                    <label><input type="radio" name="q3" value="B"> Sprawdzić informację w innych, wiarygodnych źródłach</label>
+                    <label><input type="radio" name="q3" value="C"> Uwierzyć na słowo</label>
                 </div>
-
-                <div class="task-card creative-card">
-                    <span class="badge b-creative">Poziom 3: Projekt</span>
-                    <h3>2. Opis projektu</h3>
-                    <p>Opisz pomysł na plakat „Bezpieczna Sieć”. Jakich kolorów i narzędzi z Painta użyjesz?</p>
-                    <textarea id="m3_q2" rows="3" placeholder="Opisz swój projekt..."></textarea>
-                </div>
-
-                <button type="button" class="btn-submit" onclick="gradeM3()">Sprawdź wynik Lekcji 3</button>
-            </form>
-
-            <div id="resM3" class="result-box">
-                <div id="scoreM3" class="score"></div>
-                <ul id="feedbackM3"></ul>
             </div>
-        </div>
 
-    </main>
-</div>
+            <!-- Zadanie 4 -->
+            <div class="task-card">
+                <span class="badge b-medium">Poziom 2: Analiza</span>
+                <h3>4. Ochrona danych osobowych</h3>
+                <p>Którą informację O WOLNO podawać publicznie w mediach społecznościowych?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="A"> Swój numer PESEL i adres domowy</label>
+                    <label><input type="radio" name="q4" value="B"> Nazwę ulubionej gry lub książki</label>
+                    <label><input type="radio" name="q4" value="C"> Hasło do poczty e-mail</label>
+                </div>
+            </div>
 
-<script>
-    const select = document.getElementById('studentSelect');
-    for (let i = 1; i <= 28; i++) {
-        let code = 'A' + (i < 10 ? '0' + i : i);
-        let opt = document.createElement('option');
-        opt.value = code;
-        opt.innerText = 'Uczeń ' + code;
-        select.appendChild(opt);
-    }
-
-    function showModule(modId, btn) {
-        document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(modId).classList.add('active');
-        btn.classList.add('active');
-    }
-
-    function checkUser() {
-        const u = select.value;
-        if (!u) {
-            alert('Wybierz swój kod ucznia (A01–A28) z listy na górze!');
-            return null;
-        }
-        return u;
-    }
-
-    function gradeM1() {
-        const u = checkUser(); if (!u) return;
-        let s = 0, w = [];
-        const q1 = document.querySelector('input[name="m1_q1"]:checked');
-        if (q1 && q1.value === 'A') s += 35; else w.push('Phishing (str. 35)');
-
-        const q2 = document.querySelector('input[name="m1_q2"]:checked');
-        if (q2 && q2.value === 'B') s += 35; else w.push('Deepfake i fałszywe treści (str. 36)');
-
-        const q3 = document.getElementById('m1_q3').value.trim();
-        if (q3.length >= 15) s += 30; else w.push('Zadanie twórcze: Tworzenie silnego hasła');
-
-        showRes('resM1', 'scoreM1', 'feedbackM1', s, w, u);
-    }
-
-    function gradeM2() {
-        const u = checkUser(); if (!u) return;
-        let s = 0, w = [];
-        const q1 = document.querySelector('input[name="m2_q1"]:checked');
-        if (q1 && q1.value === 'B') s += 50; else w.push('Sprzęt komputerowy');
-
-        const q2 = document.getElementById('m2_q2').value.trim();
-        if (q2.length >= 15) s += 50; else w.push('Zadanie twórcze: Zasady BHP');
-
-        showRes('resM2', 'scoreM2', 'feedbackM2', s, w, u);
-    }
-
-    function gradeM3() {
-        const u = checkUser(); if (!u) return;
-        let s = 0, w = [];
-        const q1 = document.querySelector('input[name="m3_q1"]:checked');
-        if (q1 && q1.value === 'B') s += 50; else w.push('Narzędzia malarskie w Paint');
-
-        const q2 = document.getElementById('m3_q2').value.trim();
-        if (q2.length >= 15) s += 50; else w.push('Zadanie twórcze: Projekt plakatu');
-
-        showRes('resM3', 'scoreM3', 'feedbackM3', s, w, u);
-    }
-
-    function showRes(boxId, scoreId, listId, score, weak, student) {
-        document.getElementById(boxId).style.display = 'block';
-        const sc = document.getElementById(scoreId);
-        sc.innerText = `Uczeń ${student} – Wynik: ${score}%`;
-        sc.style.color = score >= 70 ? '#2ECC71' : '#E74C3C';
-
-        const list = document.getElementById(listId);
-        list.innerHTML = '';
-        if (weak.length === 0) {
-            list.innerHTML = '<li style="color: green;"><strong>Świetnie!</strong> Opanowałeś cały materiał tej lekcji!</li>';
-        } else {
-            let h = document.createElement('li');
-            h.innerHTML = '<strong>Powtórz następujące zagadnienia:</strong>';
-            list.appendChild(h);
-            weak.forEach(item => {
-                let li = document.createElement('li');
-                li.style.color = '#C0392B';
-                li.innerText = '• ' + item;
-                list.appendChild(li);
-            });
-        }
-    }
-</script>
-
-</body>
-</html>
+            <!-- Zadanie 5 -->
+            <div class="task-card">
+                <span class="badge b-medium">Poziom 2: Analiza</span>
+                <h3>5. Czym jest Deepfake?</h3>
+                <p>Pojęcie Deepfake oznacza:</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="A"> Głębokie nurkowanie w basenie</label>
+                    <label><input type="radio" name="q5" value="B"> Zmodyfikowany cyfrowo obraz lub film, w którym ktoś udaje kogoś innego</label>
+                    <label><input type="radio" name="q5" value="C"> Awarię karty graficznej w komputerze</label>
+                </div>
+            </div>
