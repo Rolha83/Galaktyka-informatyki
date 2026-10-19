@@ -205,48 +205,133 @@
 
     <main class="content">
 
-        <!-- LEKCJA 1 -->
-        <div id="m1" class="module active">
-            <h2>Lekcja 1: Bezpieczni w cyfrowym świecie (str. 34–40)</h2>
-            <p>Przeczytaj podręcznik i rozwiąż zadania różnego poziomu trudności.</p>
+        <!-- TEMAT LEKCJI I OPRACOWANIE STRON 34–40 -->
+<div class="lesson-section">
+  <h2>Lekcja 1: Bezpieczni w cyfrowym świecie (str. 34–40)</h2>
+  <p><strong>Cel lekcji:</strong> Nauczysz się rozpoznawać zagrożenia w internecie, chronić swoje dane osobiste oraz tworzyć bezpieczne hasła.</p>
+  <p><em>Przeczytaj materiał w podręczniku i wykonaj poniższe zadania o różnym stopniu trudności.</em></p>
 
-            <form id="formM1">
-                <div class="task-card">
-                    <span class="badge b-easy">Poziom 1: Podstawy</span>
-                    <h3>1. Phishing / Wyłudzanie danych</h3>
-                    <p>Po czym najczęściej rozpoznasz niebezpieczną wiadomość (str. 35)?</p>
-                    <div class="options">
-                        <label><input type="radio" name="m1_q1" value="A"> Informuje o wygranej w konkursie, w którym nie brało się udziału</label>
-                        <label><input type="radio" name="m1_q1" value="B"> Jest napisana przez kolegę z ławki</label>
-                        <label><input type="radio" name="m1_q1" value="C"> Zawiera plan lekcji na jutro</label>
-                    </div>
-                </div>
+  <!-- ================= POZIOM 1: PODSTAWY ================= -->
+  <div class="level-box level-1" style="border: 2px solid #28a745; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+    <span class="badge" style="background: #28a745; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold;">Poziom 1: Podstawy (Pytania testowe)</span>
 
-                <div class="task-card">
-                    <span class="badge b-medium">Poziom 2: Analiza pojęć</span>
-                    <h3>2. Co oznacza pojęcie Deepfake (str. 36)?</h3>
-                    <div class="options">
-                        <label><input type="radio" name="m1_q2" value="A"> Trudną grę zręcznościową</label>
-                        <label><input type="radio" name="m1_q2" value="B"> Fałszywe, ale realistyczne zdjęcie, film lub nagranie głosu stworzone przez komputer</label>
-                        <label><input type="radio" name="m1_q2" value="C"> Szybkie połączenie internetowe</label>
-                    </div>
-                </div>
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>1. Phishing / Wyłudzanie danych (str. 35)</h3>
+      <p>Po czym najczęściej rozpoznasz niebezpieczną wiadomość e-mail lub SMS?</p>
+      <label><input type="radio" name="q1" value="a"> Informuje o wygranej w konkursie, w którym nie brało się udziału</label><br>
+      <label><input type="radio" name="q1" value="b"> Jest napisana przez kolegę z klasy</label><br>
+      <label><input type="radio" name="q1" value="c"> Zawiera plan lekcji na jutrzejszy dzień</label>
+    </div>
 
-                <div class="task-card creative-card">
-                    <span class="badge b-creative">Poziom 3: Zadanie Twórcze</span>
-                    <h3>3. Tworzenie bezpiecznego hasła (str. 39)</h3>
-                    <p>Zastosuj regułę z podręcznika: wymyśl zdanie (np. o swoim hobby), usuń spacje i zamień wybrane litery na znaki lub cyfry. Wpisz zdanie oraz stworzone z niego silne hasło:</p>
-                    <textarea id="m1_q3" rows="3" placeholder="Zdanie: Lubię jeździć na rowerze w maju! -> Hasło: LubieJezdzicNaRowerzeWMaju!2026"></textarea>
-                </div>
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>2. Pojęcie Deepfake (str. 36)</h3>
+      <p>Co oznacza pojęcie Deepfake?</p>
+      <label><input type="radio" name="q2" value="a"> Trudną grę zręcznościową dla młodzieży</label><br>
+      <label><input type="radio" name="q2" value="b"> Fałszywe, ale bardzo realistyczne zdjęcie, film lub nagranie głosu stworzone przez komputer</label><br>
+      <label><input type="radio" name="q2" value="c"> Darmowy program do rysowania grafiki</label>
+    </div>
 
-                <button type="button" class="btn-submit" onclick="gradeM1()">Sprawdź wynik Lekcji 1</button>
-            </form>
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>3. Bezpieczne hasło (str. 38)</h3>
+      <p>Jaka jest zalecana minimalna długość silnego hasła według podręcznika?</p>
+      <label><input type="radio" name="q3" value="a"> Co najmniej 6 znaków</label><br>
+      <label><input type="radio" name="q3" value="b"> Co najmniej 14 znaków</label><br>
+      <label><input type="radio" name="q3" value="c"> Dokładnie 8 cyfr</label>
+    </div>
 
-            <div id="resM1" class="result-box">
-                <div id="scoreM1" class="score"></div>
-                <ul id="feedbackM1"></ul>
-            </div>
-        </div>
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>4. Bezpieczne połączenie https:// (str. 37)</h3>
+      <p>Co oznacza kłódka i adres zaczynający się od https://?</p>
+      <label><input type="radio" name="q4" value="a"> Połączenie ze stroną jest szyfrowane</label><br>
+      <label><input type="radio" name="q4" value="b"> Strona w 100% nie zawiera żadnych oszustw</label><br>
+      <label><input type="radio" name="q4" value="c"> Strona jest przeznaczona tylko dla nauczycieli</label>
+    </div>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>5. Fake News (str. 36)</h3>
+      <p>Czym są tzw. fake newsy?</p>
+      <label><input type="radio" name="q5" value="a"> Najnowszymi wiadomościami sportowymi</label><br>
+      <label><input type="radio" name="q5" value="b"> Fałszywymi informacjami tworzonymi celowo, aby wprowadzić w błąd lub wzbudzić emocje</label><br>
+      <label><input type="radio" name="q5" value="c"> Ciekawostkami naukowymi z podręcznika</label>
+    </div>
+  </div>
+
+  <!-- ================= POZIOM 2: ANALIZA I ROZUMIENIE ================= -->
+  <div class="level-box level-2" style="border: 2px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+    <span class="badge" style="background: #ffc107; color: black; padding: 5px 10px; border-radius: 4px; font-weight: bold;">Poziom 2: Analiza pojęć</span>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>6. Cechy podejrzenia (str. 35)</h3>
+      <p>Wymień 3 cechy, po których można poznać, że otrzymana wiadomość może być próbą oszustwa:</p>
+      <textarea name="q6" rows="3" style="width: 100%;" placeholder="1. ... 2. ... 3. ..."></textarea>
+    </div>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>7. Ochrona prywatności (str. 34)</h3>
+      <p>Jakich 4 ważnych informacji o sobie nigdy nie wolno podawać nieznajomym w sieci?</p>
+      <textarea name="q7" rows="3" style="width: 100%;" placeholder="Wpisz np. adres, szkołę..."></textarea>
+    </div>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>8. Poprawianie słabego hasła (str. 38–39)</h3>
+      <p>Dlaczego hasło <code>Magda1234</code> jest łatwe do złamania? Zaproponuj, jak je zmienić na silne:</p>
+      <textarea name="q8" rows="3" style="width: 100%;" placeholder="Wyjaśnij powód i podaj nową wersję hasła..."></textarea>
+    </div>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>9. Szkodliwe oprogramowanie (str. 37)</h3>
+      <p>Opisz, co złego może się stać z komputerem, jeśli pobierzemy z sieci wirusa lub szkodliwy program:</p>
+      <textarea name="q9" rows="3" style="width: 100%;" placeholder="Opisz skutki..."></textarea>
+    </div>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>10. Rozpoznawanie Prawdy (str. 37)</h3>
+      <p>Jakie 2 pytania warto sobie zadać przed udostępnieniem dalej jakiejś informacji z internetu?</p>
+      <textarea name="q10" rows="3" style="width: 100%;" placeholder="Napisz pytania kontrolne..."></textarea>
+    </div>
+  </div>
+
+  <!-- ================= POZIOM 3: SYTUACJE PRAKTYCZNE ================= -->
+  <div class="level-box level-3" style="border: 2px solid #fd7e14; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+    <span class="badge" style="background: #fd7e14; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold;">Poziom 3: Sytuacje praktyczne</span>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>11. Reakcja na podejrzaną wiadomość (str. 40)</h3>
+      <p>Kolega przysyła Ci wiadomość na czacie z prośbą o szybkie przesłanie kodu BLIK lub pieniędzy. Co robisz krok po kroku?</p>
+      <textarea name="q11" rows="3" style="width: 100%;" placeholder="Opisz swoje postępowanie..."></textarea>
+    </div>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>12. Pomoc i numery zaufania (str. 39)</h3>
+      <p>Gdzie i do kogo możesz się zgłosić, jeśli spotka Cię nieprzyjemna lub groźna sytuacja w internecie?</p>
+      <textarea name="q12" rows="3" style="width: 100%;" placeholder="Wymień osoby lub numery telefonów zaufania..."></textarea>
+    </div>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>13. Tworzenie własnego szyfru / silnego hasła (str. 39)</h3>
+      <p>Napisz jedno zdanie o swoim hobby, a następnie zmień je w silne hasło (usuń spacje, zmień litery na cyfry/znaki specjalne):</p>
+      <textarea name="q13" rows="3" style="width: 100%;" placeholder="Zdanie: ... -> Hasło: ..."></textarea>
+    </div>
+  </div>
+
+  <!-- ================= POZIOM 4: ZADANIA TWÓRCZE (DLA ZAANGAŻOWANIA) ================= -->
+  <div class="level-box level-4" style="border: 2px solid #6f42c1; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+    <span class="badge" style="background: #6f42c1; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold;">Poziom 4: Wyzwania twórcze</span>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>14. Projekt Komiksu lub Scenariusza (str. 36)</h3>
+      <p>Ułóż krótki dialog (4 zdania) między Cyfrowym Detektywem a osobą, która o mały włos nie kliknęła w fałszywy link z wygraną:</p>
+      <textarea name="q14" rows="4" style="width: 100%;" placeholder="Detektyw: ... / Uczeń: ..."></textarea>
+    </div>
+
+    <div class="question-block" style="margin-top: 15px;">
+      <h3>15. Dekalog Bezpiecznego Internauty (str. 40)</h3>
+      <p>Stwórz krótką listę 3 najważniejszych haseł ostrzegawczych, które umieściłbyś/umieściłabyś na plakacie szkolnym o bezpieczeństwie w sieci:</p>
+      <textarea name="q15" rows="3" style="width: 100%;" placeholder="1. ... 2. ... 3. ..."></textarea>
+    </div>
+  </div>
+</div>
+
 
         <!-- LEKCJA 2 -->
         <div id="m2" class="module">
@@ -401,6 +486,36 @@
         }
     }
 </script>
+<!-- Przycisk do sprawdzania pytań testowych -->
+<button onclick="sprawdzTest()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">Sprawdź odpowiedzi z Poziomu 1</button>
+
+<p id="wynik-testu" style="font-weight: bold; font-size: 18px; margin-top: 15px;"></p>
+
+<script>
+function sprawdzTest() {
+  // Poprawne odpowiedzi do Poziomu 1
+  const poprawne = {
+    q1: "a",
+    q2: "b",
+    q3: "b",
+    q4: "a",
+    q5: "b"
+  };
+
+  let punkty = 0;
+  let lacznie = 5;
+
+  for (let q in poprawne) {
+    let zaznaczona = document.querySelector(`input[name="${q}"]:checked`);
+    if (zaznaczona && zaznaczona.value === poprawne[q]) {
+      punkty++;
+    }
+  }
+
+  document.getElementById("wynik-testu").innerText = `Twój wynik z części testowej: ${punkty} / ${lacznie} pkt.`;
+}
+</script>
+
 
 </body>
 </html>
