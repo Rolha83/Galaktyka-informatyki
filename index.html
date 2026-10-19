@@ -86,7 +86,6 @@
 
         .lesson-intro h2 { margin-top: 0; color: var(--primary); }
 
-        /* Układ kafelków w siatce */
         .tasks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -420,7 +419,7 @@
 
             </div>
 
-            <button type="button" class="btn-submit" onclick="gradeAll()">Sprawdź wynik całej lekcji</button>
+            <button type="button" class="btn-submit" onclick="gradeAll()">Sprawdź wynik całej lekcji i wyślij</button>
         </form>
 
         <div id="resultBox" class="result-box">
@@ -431,6 +430,9 @@
 </div>
 
 <script>
+    // Twój adres URL aplikacji internetowej z Google Apps Script
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVWRI09OotYT-MMF0eZHAmsSMktQbWI9OEbdhW0yk1lh9oy-AbElhI2qyI8TxBqhY";
+
     // Generowanie listy loginów uczniów od A01 do A28
     const select = document.getElementById('studentSelect');
     for (let i = 1; i <= 28; i++) {
@@ -439,6 +441,21 @@
         opt.value = code;
         opt.innerText = 'Uczeń ' + code;
         select.appendChild(opt);
+    }
+
+    function sendResultsToGoogle(studentCode, scorePercent, userAnswers) {
+        if (!GOOGLE_SCRIPT_URL) return;
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                student: studentCode,
+                score: scorePercent,
+                answers: userAnswers
+            })
+        }).catch(err => console.log("Błąd wysyłki:", err));
     }
 
     function gradeAll() {
@@ -451,6 +468,7 @@
 
         let score = 0;
         let weakPoints = [];
+        let userAnswersMap = {};
 
         const correctAnswers = {
             q1: 'A',
@@ -468,16 +486,23 @@
         // Sprawdzanie pytań testowych (1-10)
         for (let i = 1; i <= 10; i++) {
             let checked = document.querySelector(`input[name="q${i}"]:checked`);
-            if (checked && checked.value === correctAnswers[`q${i}`]) {
-                score += 6.66;
+            if (checked) {
+                userAnswersMap[`q${i}`] = checked.value;
+                if (checked.value === correctAnswers[`q${i}`]) {
+                    score += 6.66;
+                } else {
+                    weakPoints.push(`Zadanie ${i} (wymaga powtórki teorii)`);
+                }
             } else {
-                weakPoints.push(`Zadanie ${i} (wymaga powtórki teorii)`);
+                userAnswersMap[`q${i}`] = "brak";
+                weakPoints.push(`Zadanie ${i} (brak odpowiedzi)`);
             }
         }
 
         // Sprawdzanie zadań twórczych (11-15)
         for (let i = 11; i <= 15; i++) {
             let val = document.getElementById(`q${i}`).value.trim();
+            userAnswersMap[`q${i}`] = val;
             if (val.length >= 5) {
                 score += 6.66;
             } else {
@@ -487,6 +512,9 @@
 
         let finalScore = Math.round(score);
         if (finalScore > 100) finalScore = 100;
+
+        // Wysłanie wyników do Arkusza Google w tle
+        sendResultsToGoogle(student, finalScore, userAnswersMap);
 
         const resBox = document.getElementById('resultBox');
         const scoreDisp = document.getElementById('scoreDisplay');
@@ -507,11 +535,11 @@
         if (weakPoints.length === 0 || finalScore >= 95) {
             let li = document.createElement('li');
             li.style.color = 'green';
-            li.innerHTML = '<strong>Rewelacja!</strong> Perfekcyjnie opanowałeś materiał z bezpieczeństwa i walki z fake newsami!';
+            li.innerHTML = '<strong>Rewelacja!</strong> Perfekcyjnie opanowałeś materiał z bezpieczeństwa i walki z fake newsami! Wynik został zapisany.';
             feedbackList.appendChild(li);
         } else {
             let headerLi = document.createElement('li');
-            headerLi.innerHTML = '<strong>Miejsca do powtórzenia:</strong>';
+            headerLi.innerHTML = '<strong>Miejsca do powtórzenia (wynik przesłany do arkusza):</strong>';
             feedbackList.appendChild(headerLi);
 
             weakPoints.forEach(item => {
