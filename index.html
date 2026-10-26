@@ -199,7 +199,7 @@
 
         #feedbackList {
             text-align: left;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             padding-left: 20px;
         }
@@ -221,7 +221,7 @@
     <main class="content">
         <div class="lesson-intro">
             <h2>Cel lekcji (podręcznik str. 34–40)</h2>
-            <p>Nauczysz się dzisiaj rozpoznawać zagrożenia w internecie, phishing, fake newsy, a także dowiesz się, jak chronić swoje dane i tworzyć silne hasła. Rozwiąż poniższe 15 zadań i sprawdź, ile już wiesz o bezpieczeństwie w sieci.</p>
+            <p>Nauczysz się rozpoznawać zagrożenia w internecie, phishing, fake newsy oraz chronić swoje dane i tworzyć silne hasła. Rozwiąż poniższe 20 zadań i sprawdź swoją wiedzę.</p>
         </div>
 
         <form id="securityForm">
@@ -270,7 +270,7 @@
                     <div>
                         <span class="badge b-medium">Poziom 2: Analiza</span>
                         <h3>4. Ochrona danych osobowych</h3>
-                        <p>Którą informację WOLNO podawać publicznie w sieci?</p>
+                        <p>Którą informację wolno podawać publicznie w sieci?</p>
                     </div>
                     <div class="options">
                         <label><input type="radio" name="q4" value="A"> Swój numer PESEL i adres domowy</label>
@@ -301,7 +301,7 @@
                     <div class="options">
                         <label><input type="radio" name="q6" value="A"> Odpisać jeszcze gorzej</label>
                         <label><input type="radio" name="q6" value="B"> Zablokować użytkownika i powiedzieć o tym dorosłemu</label>
-                        <label><input type="radio" name="q6" value="C"> Wyłączyć komputer i nikomu nie mówić</label>
+                        <label><input type="radio" name="q6" value="C"> Wyłączyć komputer i nic nikomu nie mówić</label>
                     </div>
                 </div>
 
@@ -402,6 +402,51 @@
                     <textarea id="q15" rows="2" placeholder="Twoje motto..."></textarea>
                 </div>
 
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>16. Jak rozpoznać fałszywą wiadomość?</h3>
+                        <p>Podaj 2–3 znaki, po których można rozpoznać fake news lub podejrzaną wiadomość.</p>
+                    </div>
+                    <textarea id="q16" rows="2" placeholder="Twoja odpowiedź..."></textarea>
+                </div>
+
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>17. Dlaczego warto używać uwierzytelniania dwuetapowego?</h3>
+                        <p>Wyjaśnij, po co jest dodatkowa warstwa zabezpieczeń.</p>
+                    </div>
+                    <textarea id="q17" rows="2" placeholder="Twoja odpowiedź..."></textarea>
+                </div>
+
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>18. Co to znaczy, że hasło jest silne?</h3>
+                        <p>Opisz cechy bezpiecznego hasła.</p>
+                    </div>
+                    <textarea id="q18" rows="2" placeholder="Twoja odpowiedź..."></textarea>
+                </div>
+
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>19. Co zrobić, jeśli ktoś z internetu prosi o dane osobowe?</h3>
+                        <p>Opisz bezpieczną reakcję.</p>
+                    </div>
+                    <textarea id="q19" rows="2" placeholder="Twoja odpowiedź..."></textarea>
+                </div>
+
+                <div class="task-card creative-card">
+                    <div>
+                        <span class="badge b-creative">Poziom 3: Twórcze</span>
+                        <h3>20. Jak możesz pomóc innym w bezpiecznym korzystaniu z internetu?</h3>
+                        <p>Podaj 1–2 konkretne działania.</p>
+                    </div>
+                    <textarea id="q20" rows="2" placeholder="Twoja odpowiedź..."></textarea>
+                </div>
+
             </div>
 
             <button type="button" class="btn-submit" onclick="gradeAll()">Sprawdź wynik całej lekcji i wyślij</button>
@@ -417,38 +462,256 @@
 <script>
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5Sy3TJrGweHKI1lsWNbkwVuj2BOzidALSWRoDA25Fa3hvZS5xz9u7cG9nJLnSo1Fi/exec";
 
+    const correctAnswers = {
+        q1: "A",
+        q2: "C",
+        q3: "B",
+        q4: "B",
+        q5: "B",
+        q6: "B",
+        q7: "B",
+        q8: "A",
+        q9: "B",
+        q10: "B"
+    };
+
     const select = document.getElementById('studentSelect');
     for (let i = 1; i <= 28; i++) {
-        let code = 'A' + (i < 10 ? '0' + i : i);
-        let opt = document.createElement('option');
+        const code = 'A' + (i < 10 ? '0' + i : i);
+        const opt = document.createElement('option');
         opt.value = code;
         opt.innerText = 'Uczeń ' + code;
         select.appendChild(opt);
     }
 
+    function getSelectedValue(name) {
+        const radio = document.querySelector(`input[name="${name}"]:checked`);
+        return radio ? radio.value : "";
+    }
+
+    function getTextValue(id) {
+        const el = document.getElementById(id);
+        return el ? el.value.trim() : "";
+    }
+
+    function normalizeText(text) {
+        return text.toLowerCase()
+            .replace(/[ąćęłńóśźż]/g, match => ({
+                'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n',
+                'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z'
+            }[match]))
+            .replace(/[^a-z0-9\s]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function evaluateOpenAnswer(questionNumber, answer) {
+        const text = normalizeText(answer);
+
+        if (!text) return 0;
+
+        if (questionNumber === 11) {
+            const hasNum = /\d/.test(answer);
+            const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(answer);
+            if (answer.length >= 10 && hasNum && hasSpecial) return 2;
+            if (answer.length >= 8) return 1;
+            return 0;
+        }
+
+        if (questionNumber === 12) {
+            const goodWords = ['sprawdz', 'zrodlo', 'wiarygod', 'dane', 'potwierdz', 'prawdziw', 'nieznane', 'data', 'autorytet'];
+            const matches = goodWords.filter(word => text.includes(word));
+            if (matches.length >= 2) return 2;
+            if (matches.length === 1) return 1;
+            return 0;
+        }
+
+        if (questionNumber === 13) {
+            const goodWords = ['nie', 'klikaj', 'link', 'sprawdz', 'nadawca', 'dorosly', 'rodzic', 'zglo', 'bezpiecz', 'haslo'];
+            const matches = goodWords.filter(word => text.includes(word));
+            if (matches.length >= 3) return 2;
+            if (matches.length >= 1) return 1;
+            return 0;
+        }
+
+        if (questionNumber === 14) {
+            const goodWords = ['oszust', 'wyludz', 'dane', 'nieznajomy', 'bonus', 'ryzyko', 'strata', 'podatny', 'wirus', 'scam'];
+            const matches = goodWords.filter(word => text.includes(word));
+            if (matches.length >= 2) return 2;
+            if (matches.length === 1) return 1;
+            return 0;
+        }
+
+        if (questionNumber === 15) {
+            const hasSafetyWords = ['bezpiecz', 'ostroznie', 'uwaznie', 'dane', 'sieci', 'bezpieczenstwo', 'weryfikuj'];
+            const matches = hasSafetyWords.filter(word => text.includes(word));
+            if (text.split(/\s+/).length >= 5 && matches.length >= 1) return 2;
+            if (text.split(/\s+/).length >= 3) return 1;
+            return 0;
+        }
+
+        if (questionNumber === 16) {
+            const goodWords = ['zrodlo', 'sprawdz', 'data', 'autorytet', 'witryna', 'link', 'nieznane', 'wiarygodnosc', 'fakty', 'wykrzyknik'];
+            const matches = goodWords.filter(word => text.includes(word));
+            if (matches.length >= 2) return 2;
+            if (matches.length === 1) return 1;
+            return 0;
+        }
+
+        if (questionNumber === 17) {
+            const goodWords = ['dodatk', 'bezpieczen', 'haslo', 'kod', 'weryfikacja', 'login', 'dwuetap', 'ochrona'];
+            const matches = goodWords.filter(word => text.includes(word));
+            if (matches.length >= 2) return 2;
+            if (matches.length === 1) return 1;
+            return 0;
+        }
+
+        if (questionNumber === 18) {
+            const goodWords = ['dlugie', 'cyfry', 'znak', 'duze', 'male', 'unikaj', 'haslo', 'bezpieczne', 'wielkie'];
+            const matches = goodWords.filter(word => text.includes(word));
+            if (matches.length >= 2) return 2;
+            if (matches.length === 1) return 1;
+            return 0;
+        }
+
+        if (questionNumber === 19) {
+            const goodWords = ['nie', 'dzwiek', 'nieznany', 'sprawdz', 'rodzic', 'dorosly', 'zglo', 'kontakt', 'nieudostepniaj', 'haslo', 'dane'];
+            const matches = goodWords.filter(word => text.includes(word));
+            if (matches.length >= 3) return 2;
+            if (matches.length >= 1) return 1;
+            return 0;
+        }
+
+        if (questionNumber === 20) {
+            const goodWords = ['uczy', 'dziel', 'ostrzezen', 'sprawdz', 'bezpiecz', 'doradz', 'pomagam', 'przyjaciel', 'rodzina', 'mail'];
+            const matches = goodWords.filter(word => text.includes(word));
+            if (matches.length >= 2) return 2;
+            if (matches.length === 1) return 1;
+            return 0;
+        }
+
+        return 0;
+    }
+
+    function gradeAll() {
+        const student = document.getElementById('studentSelect').value;
+        if (!student) {
+            alert('Wybierz kod ucznia przed sprawdzeniem!');
+            return;
+        }
+
+        const answers = {};
+        let score = 0;
+        const feedback = [];
+
+        for (let i = 1; i <= 10; i++) {
+            const key = `q${i}`;
+            answers[key] = getSelectedValue(key);
+
+            if (answers[key] === correctAnswers[key]) {
+                score += 1;
+                feedback.push(`✅ Pytanie ${i}: poprawna odpowiedź.`);
+            } else {
+                feedback.push(`❌ Pytanie ${i}: poprawna odpowiedź to ${correctAnswers[key]}.`);
+            }
+        }
+
+        for (let i = 11; i <= 20; i++) {
+            const key = `q${i}`;
+            const value = getTextValue(key);
+            answers[key] = value;
+
+            const openScore = evaluateOpenAnswer(i, value);
+            score += openScore;
+
+            if (openScore === 2) {
+                feedback.push(`✅ Pytanie ${i}: odpowiedź bardzo dobra (${openScore} pkt).`);
+            } else if (openScore === 1) {
+                feedback.push(`⚠️ Pytanie ${i}: odpowiedź częściowa (${openScore} pkt).`);
+            } else {
+                feedback.push(`❌ Pytanie ${i}: brak lub zbyt słabej odpowiedzi (${openScore} pkt).`);
+            }
+        }
+
+        const maxScore = 30;
+        const resultBox = document.getElementById('resultBox');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const feedbackList = document.getElementById('feedbackList');
+
+        scoreDisplay.textContent = `Twój wynik: ${score}/${maxScore}`;
+        feedbackList.innerHTML = feedback.map(item => `<li>${item}</li>`).join('');
+        resultBox.style.display = 'block';
+
+        const payload = {
+            student: student,
+            score: score,
+            answers: answers
+        };
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Odpowiedź serwera:', data);
+        })
+        .catch(error => {
+            console.error('Błąd wysyłki:', error);
+        });
+    }
+
     async function testGoogleScript() {
-        console.log("Test wysyłki do Google Apps Script...");
+        console.log('Test wysyłki do Google Apps Script...');
 
         const testPayload = {
-            student: "TEST",
-            score: 100,
+            student: 'TEST',
+            score: 30,
             answers: {
-                q1: "A",
-                q2: "C",
-                q3: "B",
-                q4: "B",
-                q5: "B"
+                q1: 'A',
+                q2: 'C',
+                q3: 'B',
+                q4: 'B',
+                q5: 'B',
+                q6: 'B',
+                q7: 'B',
+                q8: 'A',
+                q9: 'B',
+                q10: 'B',
+                q11: 'LubieKotki2026!',
+                q12: 'Sprawdzam źródło i datę publikacji.',
+                q13: 'Nie klikam w link i pytam dorosłego.',
+                q14: 'Bo to może być oszustwo i wyłudzenie danych.',
+                q15: 'Bezpieczniej w sieci, ostrożniej w codziennym życiu.',
+                q16: 'Nieznane źródło i brak potwierdzenia w wiarygodnych portalach.',
+                q17: 'Daje dodatkową ochronę, nawet jeśli ktoś zna hasło.',
+                q18: 'Długie, z dużymi i małymi literami oraz cyframi i znakami.',
+                q19: 'Nie podaję danych i sprawdzam, czy to jest realny kontakt.',
+                q20: 'Informuję innych i pokazuję, jak bezpiecznie korzystać z internetu.'
             }
         };
 
         try {
             const response = await fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "cors",
-                headers: { "Content-Type": "application/json" },
+                method: 'POST',
+                mode: 'cors',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(testPayload)
             });
 
             const text = await response.text();
-            console.log("Odpowiedź serwera:", text);*
-
+            console.log('Odpowiedź serwera:', text);
+        } catch (error) {
+            console.error('Błąd testowej wysyłki:', error);
+        }
+    }
+
+    // testGoogleScript();
+</script>
+
+</body>
+</html>
