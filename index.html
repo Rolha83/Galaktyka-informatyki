@@ -221,13 +221,12 @@
     <main class="content">
         <div class="lesson-intro">
             <h2>Cel lekcji (podręcznik str. 34–40)</h2>
-            <p>Nauczysz się dzisiaj rozpoznawać zagrożenia w internecie, phising, fake newsy, a także dowiesz się, jak chronić swoje dane i tworzyć silne hasła. Rozwiąż poniższe 15 zadań i sprawdź swój wynik procentowy!</p>
+            <p>Nauczysz się dzisiaj rozpoznawać zagrożenia w internecie, phishing, fake newsy, a także dowiesz się, jak chronić swoje dane i tworzyć silne hasła. Rozwiąż poniższe 15 zadań i sprawdź, ile już wiesz o bezpieczeństwie w sieci.</p>
         </div>
 
         <form id="securityForm">
             <div class="tasks-grid">
 
-                <!-- Zadanie 1 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-easy">Poziom 1: Podstawy</span>
@@ -241,7 +240,6 @@
                     </div>
                 </div>
 
-                <!-- Zadanie 2 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-easy">Poziom 1: Podstawy</span>
@@ -255,7 +253,6 @@
                     </div>
                 </div>
 
-                <!-- Zadanie 3 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-medium">Poziom 2: Analiza</span>
@@ -269,7 +266,6 @@
                     </div>
                 </div>
 
-                <!-- Zadanie 4 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-medium">Poziom 2: Analiza</span>
@@ -283,7 +279,6 @@
                     </div>
                 </div>
 
-                <!-- Zadanie 5 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-medium">Poziom 2: Analiza</span>
@@ -297,7 +292,6 @@
                     </div>
                 </div>
 
-                <!-- Zadanie 6 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-easy">Poziom 1: Podstawy</span>
@@ -311,7 +305,6 @@
                     </div>
                 </div>
 
-                <!-- Zadanie 7 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-medium">Poziom 2: Analiza</span>
@@ -325,7 +318,6 @@
                     </div>
                 </div>
 
-                <!-- Zadanie 8 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-easy">Poziom 1: Podstawy</span>
@@ -339,7 +331,6 @@
                     </div>
                 </div>
 
-                <!-- Zadanie 9 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-medium">Poziom 2: Analiza</span>
@@ -353,7 +344,6 @@
                     </div>
                 </div>
 
-                <!-- Zadanie 10 -->
                 <div class="task-card">
                     <div>
                         <span class="badge b-easy">Poziom 1: Podstawy</span>
@@ -363,11 +353,10 @@
                     <div class="options">
                         <label><input type="radio" name="q10" value="A"> Szybkim graniem w gry wieloosobowe</label>
                         <label><input type="radio" name="q10" value="B"> Nękaniem, wyzywaniem lub ośmieszaniem innych przez internet</label>
-                        <label><input type="radio" name="q10" value="C"> Awarią sieci Wi-Fi w szkole</label>
+                        <label><input type="radio" name="q10" value="C"> Awarią sieci Wi‑Fi w szkole</label>
                     </div>
                 </div>
 
-                <!-- Zadanie 11 -->
                 <div class="task-card creative-card">
                     <div>
                         <span class="badge b-creative">Poziom 3: Twórcze</span>
@@ -377,7 +366,6 @@
                     <textarea id="q11" rows="2" placeholder="Np. LubieKotki2026!"></textarea>
                 </div>
 
-                <!-- Zadanie 12 -->
                 <div class="task-card creative-card">
                     <div>
                         <span class="badge b-creative">Poziom 3: Twórcze</span>
@@ -387,7 +375,6 @@
                     <textarea id="q12" rows="2" placeholder="Twoja odpowiedź..."></textarea>
                 </div>
 
-                <!-- Zadanie 13 -->
                 <div class="task-card creative-card">
                     <div>
                         <span class="badge b-creative">Poziom 3: Twórcze</span>
@@ -397,7 +384,6 @@
                     <textarea id="q13" rows="2" placeholder="Twoja odpowiedź..."></textarea>
                 </div>
 
-                <!-- Zadanie 14 -->
                 <div class="task-card creative-card">
                     <div>
                         <span class="badge b-creative">Poziom 3: Twórcze</span>
@@ -407,7 +393,6 @@
                     <textarea id="q14" rows="2" placeholder="Twoja odpowiedź..."></textarea>
                 </div>
 
-                <!-- Zadanie 15 -->
                 <div class="task-card creative-card">
                     <div>
                         <span class="badge b-creative">Poziom 3: Twórcze</span>
@@ -430,10 +415,8 @@
 </div>
 
 <script>
-    // Twój adres URL aplikacji internetowej z Google Apps Script
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5vtCV0_A-7wSxRIvsY7bgKQcV0BJeKAilXNGw2bRFzmUGDMDLGLgvirpUY4bRHQ9D/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw8-iJZTjIl0qXN1a3zW0YctJ0oOTMdaGfPFLbZiqkJgwXUG_JsbnF2N4CUW7Cb5m010g/exec";
 
-    // Generowanie listy loginów uczniów od A01 do A28
     const select = document.getElementById('studentSelect');
     for (let i = 1; i <= 28; i++) {
         let code = 'A' + (i < 10 ? '0' + i : i);
@@ -443,22 +426,29 @@
         select.appendChild(opt);
     }
 
-    function sendResultsToGoogle(studentCode, scorePercent, userAnswers) {
+    async function sendResultsToGoogle(studentCode, scorePercent, userAnswers) {
         if (!GOOGLE_SCRIPT_URL) return;
 
-        fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                student: studentCode,
-                score: scorePercent,
-                answers: userAnswers
-            })
-        }).catch(err => console.log("Błąd wysyłki:", err));
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    student: studentCode,
+                    score: scorePercent,
+                    answers: userAnswers
+                })
+            });
+
+            const result = await response.json().catch(() => ({ status: "ok" }));
+            console.log("Wynik wysłany do arkusza:", result);
+        } catch (err) {
+            console.log("Błąd wysyłki:", err);
+        }
     }
 
-    function gradeAll() {
+    async function gradeAll() {
         const student = select.value;
         if (!student) {
             alert('Wybierz najpierw swój kod ucznia (np. A01) z listy rozwijanej u góry strony!');
@@ -483,7 +473,6 @@
             q10: 'B'
         };
 
-        // Sprawdzanie pytań testowych (1-10)
         for (let i = 1; i <= 10; i++) {
             let checked = document.querySelector(`input[name="q${i}"]:checked`);
             if (checked) {
@@ -499,7 +488,6 @@
             }
         }
 
-        // Sprawdzanie zadań twórczych (11-15)
         for (let i = 11; i <= 15; i++) {
             let val = document.getElementById(`q${i}`).value.trim();
             userAnswersMap[`q${i}`] = val;
@@ -513,8 +501,7 @@
         let finalScore = Math.round(score);
         if (finalScore > 100) finalScore = 100;
 
-        // Wysłanie wyników do Arkusza Google w tle
-        sendResultsToGoogle(student, finalScore, userAnswersMap);
+        await sendResultsToGoogle(student, finalScore, userAnswersMap);
 
         const resBox = document.getElementById('resultBox');
         const scoreDisp = document.getElementById('scoreDisplay');
@@ -522,7 +509,7 @@
 
         resBox.style.display = 'block';
         scoreDisp.innerText = `Uczeń ${student} – Twój wynik: ${finalScore}%`;
-        
+
         if (finalScore >= 80) {
             scoreDisp.style.color = '#2ECC71';
         } else if (finalScore >= 50) {
@@ -549,7 +536,7 @@
                 feedbackList.appendChild(li);
             });
         }
-        
+
         resBox.scrollIntoView({ behavior: 'smooth' });
     }
 </script>
