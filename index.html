@@ -196,7 +196,7 @@
         }
 
         .score { font-size: 2.2em; font-weight: bold; margin-bottom: 15px; }
-        
+
         #feedbackList {
             text-align: left;
             max-width: 600px;
@@ -415,7 +415,7 @@
 </div>
 
 <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxMMfbInctr0UNQ-rOi1OriGoLzWkMFEX5GlkwoH8Ymmqt15PPTl1awsm_Dhy_wG93f/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5Sy3TJrGweHKI1lsWNbkwVuj2BOzidALSWRoDA25Fa3hvZS5xz9u7cG9nJLnSo1Fi/exec";
 
     const select = document.getElementById('studentSelect');
     for (let i = 1; i <= 28; i++) {
@@ -426,120 +426,29 @@
         select.appendChild(opt);
     }
 
-    async function sendResultsToGoogle(studentCode, scorePercent, userAnswers) {
-        if (!GOOGLE_SCRIPT_URL) return;
+    async function testGoogleScript() {
+        console.log("Test wysyłki do Google Apps Script...");
+
+        const testPayload = {
+            student: "TEST",
+            score: 100,
+            answers: {
+                q1: "A",
+                q2: "C",
+                q3: "B",
+                q4: "B",
+                q5: "B"
+            }
+        };
 
         try {
             const response = await fetch(GOOGLE_SCRIPT_URL, {
                 method: "POST",
                 mode: "cors",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    student: studentCode,
-                    score: scorePercent,
-                    answers: userAnswers
-                })
+                body: JSON.stringify(testPayload)
             });
 
-            const result = await response.json().catch(() => ({ status: "ok" }));
-            console.log("Wynik wysłany do arkusza:", result);
-        } catch (err) {
-            console.log("Błąd wysyłki:", err);
-        }
-    }
-
-    async function gradeAll() {
-        const student = select.value;
-        if (!student) {
-            alert('Wybierz najpierw swój kod ucznia (np. A01) z listy rozwijanej u góry strony!');
-            select.focus();
-            return;
-        }
-
-        let score = 0;
-        let weakPoints = [];
-        let userAnswersMap = {};
-
-        const correctAnswers = {
-            q1: 'A',
-            q2: 'C',
-            q3: 'B',
-            q4: 'B',
-            q5: 'B',
-            q6: 'B',
-            q7: 'B',
-            q8: 'A',
-            q9: 'B',
-            q10: 'B'
-        };
-
-        for (let i = 1; i <= 10; i++) {
-            let checked = document.querySelector(`input[name="q${i}"]:checked`);
-            if (checked) {
-                userAnswersMap[`q${i}`] = checked.value;
-                if (checked.value === correctAnswers[`q${i}`]) {
-                    score += 6.66;
-                } else {
-                    weakPoints.push(`Zadanie ${i} (wymaga powtórki teorii)`);
-                }
-            } else {
-                userAnswersMap[`q${i}`] = "brak";
-                weakPoints.push(`Zadanie ${i} (brak odpowiedzi)`);
-            }
-        }
-
-        for (let i = 11; i <= 15; i++) {
-            let val = document.getElementById(`q${i}`).value.trim();
-            userAnswersMap[`q${i}`] = val;
-            if (val.length >= 5) {
-                score += 6.66;
-            } else {
-                weakPoints.push(`Zadanie twórcze ${i} (zbyt krótka lub pusta odpowiedź)`);
-            }
-        }
-
-        let finalScore = Math.round(score);
-        if (finalScore > 100) finalScore = 100;
-
-        await sendResultsToGoogle(student, finalScore, userAnswersMap);
-
-        const resBox = document.getElementById('resultBox');
-        const scoreDisp = document.getElementById('scoreDisplay');
-        const feedbackList = document.getElementById('feedbackList');
-
-        resBox.style.display = 'block';
-        scoreDisp.innerText = `Uczeń ${student} – Twój wynik: ${finalScore}%`;
-
-        if (finalScore >= 80) {
-            scoreDisp.style.color = '#2ECC71';
-        } else if (finalScore >= 50) {
-            scoreDisp.style.color = '#F39C12';
-        } else {
-            scoreDisp.style.color = '#E74C3C';
-        }
-
-        feedbackList.innerHTML = '';
-        if (weakPoints.length === 0 || finalScore >= 95) {
-            let li = document.createElement('li');
-            li.style.color = 'green';
-            li.innerHTML = '<strong>Rewelacja!</strong> Perfekcyjnie opanowałeś materiał z bezpieczeństwa i walki z fake newsami! Wynik został zapisany.';
-            feedbackList.appendChild(li);
-        } else {
-            let headerLi = document.createElement('li');
-            headerLi.innerHTML = '<strong>Miejsca do powtórzenia (wynik przesłany do arkusza):</strong>';
-            feedbackList.appendChild(headerLi);
-
-            weakPoints.forEach(item => {
-                let li = document.createElement('li');
-                li.style.color = '#C0392B';
-                li.innerText = '• ' + item;
-                feedbackList.appendChild(li);
-            });
-        }
-
-        resBox.scrollIntoView({ behavior: 'smooth' });
-    }
-</script>
-
-</body>
-</html>
+            const text = await response.text();
+            console.log("Odpowiedź serwera:", text);*
+
