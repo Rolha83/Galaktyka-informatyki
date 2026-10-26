@@ -283,7 +283,12 @@
             .user-panel,
             .submit-btn,
             .print-btn,
-            .instruction-box {
+            .instruction-box,
+            form,
+            .intro-card,
+            .tasks-grid,
+            .task-card,
+            .wrapper > section:not(#resultBox) {
                 display: none !important;
             }
 
@@ -293,20 +298,24 @@
                 padding: 0 !important;
             }
 
-            .intro-card,
-            .task-card,
+            #resultBox {
+                display: block !important;
+                width: 100% !important;
+                margin: 0 !important;
+                background: white !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+
             .result-box {
                 box-shadow: none !important;
                 border: 1px solid #d0d0d0 !important;
                 break-inside: avoid;
             }
 
-            .tasks-grid {
-                display: block;
-            }
-
-            .task-card {
-                margin-bottom: 14px;
+            #feedbackList {
+                padding-left: 18px;
             }
         }
 
