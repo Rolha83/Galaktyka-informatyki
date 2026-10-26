@@ -227,7 +227,7 @@
             margin-top: 8px;
         }
 
-        .submit-btn {
+        .submit-btn, .print-btn {
             display: block;
             width: 100%;
             border: none;
@@ -240,9 +240,10 @@
             cursor: pointer;
             box-shadow: 0 12px 25px rgba(46, 106, 193, 0.24);
             transition: transform 0.15s ease, box-shadow 0.15s ease;
+            margin-top: 14px;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover, .print-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 16px 28px rgba(46, 106, 193, 0.30);
         }
@@ -271,6 +272,42 @@
             padding-left: 22px;
             line-height: 1.8;
             color: var(--text);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            header,
+            .user-panel,
+            .submit-btn,
+            .print-btn,
+            .instruction-box {
+                display: none !important;
+            }
+
+            .wrapper {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .intro-card,
+            .task-card,
+            .result-box {
+                box-shadow: none !important;
+                border: 1px solid #d0d0d0 !important;
+                break-inside: avoid;
+            }
+
+            .tasks-grid {
+                display: block;
+            }
+
+            .task-card {
+                margin-bottom: 14px;
+            }
         }
 
         @media (max-width: 640px) {
@@ -311,7 +348,7 @@
                 <strong>Instrukcja:</strong>
                 Odpowiedz na wszystkie pytania. W pytaniach testowych wybierz jedną poprawną odpowiedź.
                 W pytaniach otwartych napisz krótką, sensowną odpowiedź. Po naciśnięciu przycisku
-                wynik zostanie policzony i zapisany.
+                wynik zostanie policzony. Następnie możesz pobrać wynik jako PDF.
             </div>
         </section>
 
@@ -546,12 +583,11 @@
         <div id="resultBox" class="result-box">
             <div id="scoreDisplay" class="score"></div>
             <ul id="feedbackList"></ul>
+            <button type="button" class="print-btn" onclick="window.print()">Pobierz PDF</button>
         </div>
     </div>
 
     <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhhLsLYlMVUpUMUd1bcw2fmz4WMTV4cn6Q2eDiJwvT_vYlh8heQnD2goEv0-57xi44bQ/exec";
-
         const correctAnswers = {
             q1: "A",
             q2: "C",
@@ -733,22 +769,6 @@
             scoreDisplay.textContent = `Twój wynik: ${score}/${maxScore}`;
             feedbackList.innerHTML = feedback.map(item => `<li>${item}</li>`).join("");
             resultBox.style.display = "block";
-
-            const payload = {
-                student: student,
-                score: score,
-                answers: answers
-            };
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            })
-            .then(response => response.text())
-            .then(data => console.log("Odpowiedź serwera:", data))
-            .catch(error => console.error("Błąd wysyłki:", error));
         }
 
         populateStudentList();
