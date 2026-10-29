@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jak szukać informacji? – praca praktyczna</title>
+<style>
+:root{--ink:#1d2b4f;--paper:#f6f8fe;--card:#fff;--blue:#2f6fed;--sun:#ffd23f;--ok:#1f8a5b;--bad:#cf3f3f;--line:#d5dcf0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.5 "Trebuchet MS","Segoe UI",Verdana,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.7rem;margin:.2em 0}
+.lead{margin:0 0 18px;color:#44507a}
+.box{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 16px}
+.who{border-color:var(--ink);background:var(--sun)}
+.who label{font-weight:700}
+select,input[type=text]{font:inherit;padding:8px 10px;border:2px solid var(--ink);border-radius:8px;background:#fff;color:var(--ink)}
+input[type=text]{width:100%}
+h2{font-size:1.15rem;margin:26px 0 10px;padding-left:10px;border-left:6px solid var(--blue)}
+.q{border-left:6px solid var(--line)}
+.q p{margin:0 0 10px;font-weight:700}
+.q .pts{font-weight:400;color:#6a74a0;font-size:.85rem}
+.opt{display:flex;gap:10px;align-items:center;padding:6px 8px;border-radius:8px;cursor:pointer}
+.opt:hover{background:#eef2ff}
+.opt input{width:22px;height:22px;accent-color:var(--blue)}
+.q.right{border-left-color:var(--ok)}
+.q.wrong{border-left-color:var(--bad)}
+.mark{display:none;font-weight:700;margin-top:8px}
+.done .q.right .mark.r{display:block;color:var(--ok)}
+.done .q.wrong .mark.w{display:block;color:var(--bad)}
+button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:12px 22px;background:var(--blue);color:#fff;cursor:pointer}
+button.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+#err{color:var(--bad);font-weight:700;margin:10px 0 0;min-height:1.4em}
+#result{display:none;text-align:center;border-color:var(--ink)}
+#result .big{font-size:3.4rem;font-weight:800;line-height:1.1;margin:6px 0}
+#result .nr{font-size:1.3rem;font-weight:700}
+.bar{height:16px;background:var(--line);border-radius:8px;overflow:hidden;margin:12px auto;max-width:420px}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.tiles{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0}
+.tiles span{width:34px;height:34px;display:grid;place-items:center;border-radius:8px;color:#fff;font-weight:700;font-size:.9rem}
+.tiles .y{background:var(--ok)}.tiles .n{background:var(--bad)}
+.done input,.done select{pointer-events:none}
+@media print{.noprint{display:none!important}body{background:#fff}}
+@media (prefers-color-scheme:dark){
+:root{--ink:#e8ecfb;--paper:#141a30;--card:#1d2545;--line:#38426b}
+.who{background:#3a3414;border-color:var(--sun)}
+select,input[type=text]{background:#0f1428;color:var(--ink);border-color:#7e8ab8}
+.opt:hover{background:#27315a}.lead,.q .pts{color:#a7b0d6}
+button.alt{background:transparent;color:var(--ink);border-color:var(--ink)}
+}
+</style>
+</head>
+<body>
+<main id="app">
+<h1>Jak szukać informacji?</h1>
+<p class="lead">Praca praktyczna z informatyki. Przeczytaj uważnie każde pytanie. Po kliknięciu „Zakończ pracę” zobaczysz swój wynik.</p>
+
+<div class="box who">
+<label for="nr">Twój numer w dzienniku:</label>
+<select id="nr"><option value="">– wybierz –</option></select>
+</div>
+
+<h2>Część A. Zadania zamknięte</h2>
+<div id="closed"></div>
+<h2>Część B. Zadania otwarte</h2>
+<p class="lead">Odpowiedz krótko, własnymi słowami.</p>
+<div id="open"></div>
+
+<div class="noprint">
+<button id="finish">Zakończ pracę</button>
+<p id="err" role="alert"></p>
+</div>
+
+<div class="box" id="result" aria-live="polite">
+<div class="nr" id="rNr"></div>
+<div class="big" id="rPct"></div>
+<div id="rPts"></div>
+<div class="bar"><i id="rBar"></i></div>
+<p id="rMsg"></p>
+<div class="tiles" id="tiles"></div>
+<p id="sent" class="lead" role="status"></p>
+<div class="noprint"><button class="alt" id="retry" style="display:none" onclick="send()">Wyślij ponownie</button></div>
+<p id="rDate" class="lead"></p>
+<div class="noprint"><button class="alt" onclick="window.print()">Drukuj lub zapisz jako PDF</button></div>
+</div>
+</main>
+
+<script>
+// ===== PYTANIA (nauczycielka może tu łatwo zmieniać treść) =====
+// type: one = jedna odpowiedź, multi = kilka odpowiedzi, tf = prawda/fałsz, open = pytanie otwarte
+// ans = numery poprawnych opcji (od 0), keys = słowa kluczowe akceptowane w odpowiedzi otwartej
+var Q = [
+ {t:"one", p:1, q:"Program do przeglądania stron internetowych to…", o:["przeglądarka internetowa","edytor tekstu","kalkulator","program do rysowania"], ans:[0]},
+ {t:"multi",p:1, q:"Które programy są przeglądarkami internetowymi? (zaznacz wszystkie)", o:["Google Chrome","Microsoft Edge","Mozilla Firefox","Paint"], ans:[0,1,2]},
+ {t:"multi",p:1, q:"Które nazwy to wyszukiwarki internetowe? (zaznacz wszystkie)", o:["Google","Bing","DuckDuckGo","Scratch"], ans:[0,1,2]},
+ {t:"one", p:1, q:"Gdzie wpisujesz zapytanie, aby znaleźć informacje w internecie?", o:["w polu wyszukiwarki internetowej","w programie Paint","w Notatniku","w kalkulatorze"], ans:[0]},
+ {t:"tf", p:1, q:"Wszystkie informacje w internecie są prawdziwe.", ans:[1]},
+ {t:"tf", p:1, q:"Informację warto sprawdzić na kilku różnych stronach.", ans:[0]},
+ {t:"tf", p:1, q:"Cudzą pracę wolno podpisać swoim nazwiskiem.", ans:[1]},
+ {t:"one", p:1, q:"Gdy kursor zmienia kształt w rączkę, to znaczy, że jest nad…", o:["hiperłączem (linkiem)","pustą stroną","paskiem zadań","klawiaturą"], ans:[0]},
+ {t:"one", p:1, q:"Co jest ważne przy sprawdzaniu, czy informacja jest wiarygodna?", o:["kto jest autorem i kiedy powstała strona","ile na stronie jest kolorów","jak długa jest strona","jak krótka jest nazwa strony"], ans:[0]},
+ {t:"one", p:1, q:"Aby zapisać obraz ze strony, klikasz go prawym przyciskiem myszy i wybierasz…", o:["Zapisz obraz jako","Wklej","Zamknij","Wyłącz"], ans:[0]},
+
+ {t:"open", p:2, q:"Podaj nazwę jednej wyszukiwarki internetowej.", keys:["google","bing","duckduckgo","duck duck go","yahoo","ecosia"]},
+ {t:"open", p:2, q:"Podaj nazwę jednej przeglądarki internetowej.", keys:["chrome","edge","firefox","opera","safari"]},
+ {t:"open", p:2, q:"Którą opcję wybierasz z menu prawego przycisku myszy, aby skopiować zaznaczony tekst?", keys:["kopiuj","ctrl+c","ctrl c"]},
+ {t:"open", p:2, q:"Napisz jeden sposób sprawdzenia, czy informacja w internecie jest prawdziwa.", keys:["porown","kilku","innych","autor","dat","zrodl","wiarygodn","oficjaln"]},
+ {t:"open", p:2, q:"Co należy podać, gdy korzystasz z cudzej pracy (np. zdjęcia lub tekstu)?", keys:["autor","adres","zrodl","link","nazwisk","pseudonim"]},
+ {t:"open", p:2, q:"Którą opcję wybierasz z menu prawego przycisku myszy, aby wkleić skopiowany tekst do dokumentu?", keys:["wklej","ctrl+v","ctrl v"]},
+ {t:"open", p:2, q:"Gdzie w przeglądarce wpisujesz adres strony internetowej?", keys:["pasek","pasku","adres","gorze","gorn"]},
+ {t:"open", p:2, q:"Napisz własnymi słowami, co to jest hiperłącze (link).", keys:["przenos","odsyl","klikni","przejsc","przejdz","inna strona","innej strony","innej stronie","otwier"]},
+ {t:"open", p:2, q:"Wpisz zapytanie, które wpiszesz w wyszukiwarce, aby znaleźć informacje o pierwszym telefonie komórkowym.", keys:["telefon","komork"]},
+ {t:"open", p:2, q:"Podaj jeden powód, dla którego nie wszystkim informacjom z internetu można ufać.", keys:["nieprawd","falsz","blad","nieaktual","nieznan","anonim","kazdy moze","oszust","reklam","sztuczn","nie wiadomo","stare","przestarz"]}
+];
+
+// ===== WYSYŁANIE WYNIKÓW DO GOOGLE SHEETS =====
+// Wklej tutaj adres aplikacji internetowej z Google Apps Script (kończy się na /exec).
+// Gdy pole jest puste, wyniki nie są nigdzie wysyłane.
+var ENDPOINT = "https://script.google.com/macros/s/AKfycbyTvr6TQmQnlQIegYBAZQnE1GqaOfgZGbwBxLJBN01fPBOEC6OKjLHLm_pujvxyOVyn/exec";
+var lastPayload = null;
+function send(p){
+  var s=document.getElementById("sent"), b=document.getElementById("retry");
+  if(p) lastPayload=p;
+  if(!ENDPOINT){s.textContent="";return;}
+  s.textContent="Wysyłanie wyniku…"; b.style.display="none";
+  fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(lastPayload)})
+  .then(function(r){return r.json();})
+  .then(function(j){ if(j&&j.ok){s.textContent="✔ Wynik został wysłany do nauczycielki.";} else {throw 0;} })
+  .catch(function(){s.textContent="✘ Nie udało się wysłać wyniku. Sprawdź internet i kliknij „Wyślij ponownie”.";b.style.display="inline-block";});
+}
+
+// ===== BUDOWANIE STRONY =====
+var nrSel=document.getElementById("nr");
+for(var i=1;i<=28;i++){var o=document.createElement("option");o.value=i;o.textContent=i;nrSel.appendChild(o);}
+var cBox=document.getElementById("closed"), oBox=document.getElementById("open"), openCount=0, closedCount=0;
+Q.forEach(function(x,i){
+  var d=document.createElement("div"); d.className="box q"; d.id="q"+i;
+  var pts=' <span class="pts">('+x.p+(x.p===1?' punkt':' punkty')+')</span>';
+  var h='<p>'+(i+1)+'. '+x.q+pts+'</p>';
+  if(x.t==="open"){
+    h+='<input type="text" id="a'+i+'" autocomplete="off" aria-label="Odpowiedź do pytania '+(i+1)+'">';
+  } else {
+    var opts = x.t==="tf" ? ["Prawda","Fałsz"] : x.o;
+    var type = x.t==="multi" ? "checkbox" : "radio";
+    opts.forEach(function(t,j){
+      h+='<label class="opt"><input type="'+type+'" name="a'+i+'" value="'+j+'"><span>'+t+'</span></label>';
+    });
+  }
+  h+='<div class="mark r">✔ Dobrze</div><div class="mark w">✘ Do poprawy</div>';
+  d.innerHTML=h;
+  (x.t==="open"?oBox:cBox).appendChild(d);
+});
+
+// ===== SPRAWDZANIE =====
+function norm(s){
+  return s.toLowerCase().replace(/ł/g,"l").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g," ").trim();
+}
+function same(a,b){return a.length===b.length && a.every(function(v,i){return v===b[i];});}
+var finished=false;
+document.getElementById("finish").onclick=function(){
+  if(finished) return;
+  var err=document.getElementById("err");
+  if(!nrSel.value){err.textContent="Najpierw wybierz swój numer z dziennika (na górze strony).";nrSel.focus();window.scrollTo(0,0);return;}
+  var empty=0;
+  Q.forEach(function(x,i){
+    if(x.t==="open"){ if(!norm(document.getElementById("a"+i).value)) empty++; }
+    else if(!document.querySelector('input[name="a'+i+'"]:checked')) empty++;
+  });
+  if(empty>0 && !confirm("Masz niewypełnione odpowiedzi: "+empty+". Czy na pewno chcesz zakończyć pracę?")) return;
+  err.textContent="";
+  var got=0,max=0,tiles="",pts=[],ans=[];
+  Q.forEach(function(x,i){
+    var ok=false; max+=x.p;
+    if(x.t==="open"){
+      var v=norm(document.getElementById("a"+i).value);
+      ok = v.length>=3 && x.keys.some(function(k){return v.indexOf(k)!==-1;});
+    } else {
+      var sel=[].slice.call(document.querySelectorAll('input[name="a'+i+'"]:checked')).map(function(e){return +e.value;}).sort();
+      ok = same(sel,x.ans.slice().sort());
+    }
+    if(ok) got+=x.p;
+    pts.push(ok?x.p:0);
+    ans.push(x.t==="open"?document.getElementById("a"+i).value.trim():"");
+    document.getElementById("q"+i).classList.add(ok?"right":"wrong");
+    tiles+='<span class="'+(ok?"y":"n")+'" title="Pytanie '+(i+1)+'">'+(i+1)+'</span>';
+  });
+  var pct=Math.round(got/max*100);
+  finished=true;
+  document.getElementById("app").classList.add("done");
+  document.querySelectorAll("input[type=text]").forEach(function(e){e.readOnly=true;});
+  document.getElementById("rNr").textContent="Uczeń o numerze "+nrSel.value;
+  document.getElementById("rPct").textContent=pct+"%";
+  document.getElementById("rPts").textContent=got+" z "+max+" punktów";
+  document.getElementById("rBar").style.width=pct+"%";
+  document.getElementById("rMsg").textContent = pct>=90?"Świetna praca!":pct>=70?"Dobra robota!":pct>=50?"Nieźle, ale warto jeszcze poćwiczyć.":"Warto powtórzyć materiał z lekcji.";
+  document.getElementById("tiles").innerHTML=tiles;
+  document.getElementById("rDate").textContent="Zakończono: "+new Date().toLocaleString("pl-PL");
+  document.getElementById("finish").disabled=true;
+  send({nr:+nrSel.value,pct:pct,got:got,max:max,pts:pts,ans:ans});
+  var r=document.getElementById("result"); r.style.display="block"; r.scrollIntoView({behavior:"smooth"});
+};
+</script>
+</body>
+</html>
