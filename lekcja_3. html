@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lekcja 3. Jak szukać informacji?</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Caveat:wght@500;700&display=swap">
+<style>
+:root{--bg:#eef4fa;--paper:#fff;--ink:#1f3a5f;--text:#22303f;--grid:#d5e3f1;--margin:#d64545;--ok:#2e8b57;--soft:#e3eefa;--hand:#1b4f9c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a24;--paper:#1b2633;--ink:#a9c8f0;--text:#dbe5f0;--grid:#2a3b50;--margin:#e26b6b;--ok:#58c28a;--soft:#223247;--hand:#8fc0ff}}
+:root[data-theme="dark"]{--bg:#121a24;--paper:#1b2633;--ink:#a9c8f0;--text:#dbe5f0;--grid:#2a3b50;--margin:#e26b6b;--ok:#58c28a;--soft:#223247;--hand:#8fc0ff}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Nunito,"Segoe UI",system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px 16px 80px}
+header{padding:28px 0 8px}
+h1{font-size:2rem;line-height:1.15;margin:0 0 8px;color:var(--ink);font-weight:800}
+h2{font-size:1.4rem;margin:0 0 8px;color:var(--ink);font-weight:800}
+h3{font-size:1.05rem;margin:18px 0 6px;color:var(--ink)}
+.lead{margin:0;max-width:60ch}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:10px 0;display:flex;align-items:center;gap:12px;font-weight:700;font-size:.95rem}
+.track{flex:1;height:10px;border-radius:6px;background:var(--grid);overflow:hidden}
+.fill{height:100%;width:0;background:var(--ok);transition:width .3s}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+section{background:var(--paper);border-radius:14px;padding:22px 20px;margin:18px 0;border:1px solid var(--grid)}
+p{margin:0 0 10px;max-width:68ch}
+.ex{background:var(--soft);border-radius:10px;padding:10px 14px;margin:10px 0}
+.task{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px dashed var(--grid)}
+.task input{width:22px;height:22px;margin-top:3px;accent-color:var(--ok);flex:none}
+.task label{cursor:pointer}
+.task input:checked+label{color:var(--ok)}
+.notes{margin:16px 0 4px;border:2px solid var(--hand);border-radius:10px;overflow:hidden}
+.notes>b{display:block;background:var(--hand);color:#fff;padding:6px 14px;font-size:.95rem}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .notes>b{color:#10202f}}
+.page{padding:6px 14px 10px 44px;position:relative;font:500 1.35rem/28px Caveat,"Comic Sans MS",cursive;color:var(--hand);background:repeating-linear-gradient(to bottom,transparent 0 27px,var(--grid) 27px 28px);overflow-x:auto}
+.page::before{content:"";position:absolute;left:30px;top:0;bottom:0;width:2px;background:var(--margin)}
+.page p{margin:0;max-width:none}
+.page .gap{display:inline-block;min-width:5em;border-bottom:2px dotted var(--hand)}
+.page ul{margin:0;padding-left:20px}
+.hint{font-size:.92rem;margin:8px 0 0}
+details{margin:10px 0}
+summary{cursor:pointer;font-weight:700;color:var(--ink)}
+summary:focus-visible,input:focus-visible,button:focus-visible{outline:3px solid var(--hand);outline-offset:2px}
+.done{display:none;text-align:center;font-weight:800;font-size:1.2rem;color:var(--ok);padding:16px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+nav a{background:var(--paper);border:1px solid var(--grid);border-radius:20px;padding:4px 12px;color:var(--ink);text-decoration:none;font-weight:700;font-size:.9rem}
+nav a:focus-visible,nav a:hover{border-color:var(--hand)}
+.ans,.img{margin:4px 0 12px 32px}.ans label,.img>span{display:block;font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:3px}textarea,.rate input[type=text],.rate input[type=number]{width:100%;padding:8px 10px;border:1.5px solid var(--grid);border-radius:8px;background:var(--bg);color:var(--text);font:inherit}textarea{min-height:76px;resize:vertical}.rate input[type=number]{width:6em}.rate select{padding:8px 10px;border:1.5px solid var(--grid);border-radius:8px;background:var(--bg);color:var(--text);font:inherit;min-width:12em}.rate a{display:inline-block;margin-left:10px;font-weight:800;color:var(--ink)}.rate input[type=text]{max-width:340px}textarea:focus-visible,.rate input:focus-visible,.drop:focus-visible{outline:3px solid var(--hand);outline-offset:2px}.drop{border:2px dashed var(--hand);border-radius:10px;padding:10px 12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.92rem}.drop img{display:none;max-width:170px;max-height:130px;border-radius:6px}.drop img.on{display:block}.nb{display:flex;gap:8px;align-items:center;margin:10px 0;font-weight:700;cursor:pointer}.nb input{width:20px;height:20px;accent-color:var(--ok)}.big{font-size:3.2rem;font-weight:800;line-height:1;color:var(--ok);margin:6px 0 10px}.rate table{border-collapse:collapse;width:100%;max-width:380px;margin-bottom:12px}.rate td{padding:3px 0;border-bottom:1px dashed var(--grid)}.rate td+td{text-align:right;font-weight:700}.rate button{background:var(--hand);color:var(--paper);border:0;border-radius:8px;padding:9px 16px;font:800 1rem Nunito,system-ui,sans-serif;cursor:pointer}@media print{.bar,nav,body::before,.noprint,.drop input{display:none}}
+@media (max-width:480px){.ans,.img{margin-left:0}h1{font-size:1.6rem}section{padding:18px 14px}.page{font-size:1.2rem}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Lekcja 3. Jak szukać informacji?</h1>
+<p class="lead">Przechodź po kolei przez pięć części. W każdej wykonaj zadania na komputerze, a potem uzupełnij notatkę w zeszycie. Gdy skończysz zadanie, zaznacz je kwadracikiem. Odpowiedzi i obrazki wklejaj w pola pod zadaniami, a na końcu zobaczysz ocenę swojej pracy.</p>
+<nav aria-label="Spis części"><a href="#c1">1. Przeglądarka i wyszukiwarka</a><a href="#c2">2. Dobre zapytanie</a><a href="#c3">3. Czy to prawda?</a><a href="#c4">4. Prace innych osób</a><a href="#c5">5. Zapisujemy informacje</a><a href="#c6">Czy już umiem?</a></nav>
+</header>
+<div class="bar" role="status"><span id="cnt">0 / 0</span><div class="track"><div class="fill" id="fill"></div></div></div>
+
+<section id="c1">
+<h2>1. Przeglądarka i wyszukiwarka</h2>
+<p><b>Przeglądarka internetowa</b> to program, w którym oglądamy strony internetowe (np. Chrome, Microsoft Edge, Firefox, Opera). Adres strony wpisujemy w pasek adresu u góry i naciskamy Enter.</p>
+<p><b>Wyszukiwarka internetowa</b> to strona, na której wpisujemy zapytanie i dostajemy listę innych stron (np. Google, Bing, DuckDuckGo).</p>
+<div class="task"><input type="checkbox" id="t1"><label for="t1">Otwórz przeglądarkę. Pokaż nauczycielowi, gdzie jest pasek adresu.</label></div>
+<div class="task"><input type="checkbox" id="t2"><label for="t2">Wejdź na stronę google.com i znajdź pole, w którym wpisuje się zapytanie.</label></div>
+<div class="notes"><b>✏️ Zapisz w zeszycie</b><div class="page">
+<p><u>Temat: Jak szukać informacji?</u></p>
+<p>1. Przeglądarka internetowa to <span class="gap"></span></p>
+<p>Przykłady: <span class="gap"></span>, <span class="gap"></span></p>
+<p>2. Wyszukiwarka internetowa to <span class="gap"></span></p>
+<p>Przykłady: <span class="gap"></span>, <span class="gap"></span></p>
+</div></div>
+<p class="hint">Dopisz w zeszycie brakujące słowa własnymi słowami. Zostaw sobie 4 linijki odstępu po tytule.</p>
+</section>
+
+<section id="c2">
+<h2>2. Dobre zapytanie</h2>
+<p>Zapytanie musi być <b>precyzyjne</b>. Jedno słowo, np. „telefon”, da za dużo różnych wyników. Lepiej wpisać całe pytanie lub kilka ważnych słów, np. „pierwszy telefon komórkowy na świecie”.</p>
+<p>Pod polem wyszukiwania są opcje, np. <i>Wszystko, Grafika, Wideo</i>. Dzięki nim zawężasz wyniki do tego, czego potrzebujesz.</p>
+<div class="ex"><b>Uwaga:</b> na górze wyników może być podsumowanie przygotowane przez sztuczną inteligencję. Może się mylić, więc sprawdź je na innych stronach.</div>
+<div class="task"><input type="checkbox" id="t3"><label for="t3"><b>Zadanie 1.</b> Wyszukaj obrazek przedstawiający bohatera ulubionego filmu. Użyj opcji <i>Grafika</i>.</label></div>
+<div class="task"><input type="checkbox" id="t4"><label for="t4"><b>Zadanie 2.</b> Znajdź tekst ulubionej piosenki lub wiersza (tylko do przeczytania, nie przepisuj całości).</label></div>
+<div class="task"><input type="checkbox" id="t5"><label for="t5"><b>Zadanie 3.</b> Dowiedz się, w którym roku powstał pierwszy komputer, do którego można było podłączyć monitor.</label></div>
+<div class="notes"><b>✏️ Zapisz w zeszycie</b><div class="page">
+<p><u>Jak wpisać dobre zapytanie?</u></p>
+<ul><li>wpisuję <span class="gap"></span> słowa kluczowe</li><li>nie wpisuję tylko <span class="gap"></span></li><li>używam opcji <span class="gap"></span>, gdy szukam zdjęć</li></ul>
+<p>Moje zapytanie nr 1: <span class="gap"></span></p>
+<p>Moje zapytanie nr 2: <span class="gap"></span></p>
+<p>Odpowiedź na zadanie 3: <span class="gap"></span></p>
+</div></div>
+<p class="hint">Zadania 1 i 2 zapisujesz w pliku, dlatego w zeszycie notujesz tylko zapytania, które wpisałeś(-aś).</p>
+</section>
+
+<section id="c3">
+<h2>3. Czy to prawda?</h2>
+<p>Nie wszystko w internecie jest prawdziwe ani aktualne. Zanim użyjesz informacji, sprawdź ją na trzy sposoby.</p>
+<details open><summary>Trzy pytania kontrolne</summary>
+<p><b>Kto to napisał?</b> Poszukaj autora lub nazwy instytucji. Nie ufaj stronom bez podpisu.</p>
+<p><b>Kiedy to powstało?</b> Znajdź datę publikacji. Stara informacja może być już nieaktualna.</p>
+<p><b>Czy inni piszą to samo?</b> Porównaj z dwiema–trzema innymi stronami, np. szkoły, urzędu lub muzeum.</p></details>
+<div class="task"><input type="checkbox" id="t6"><label for="t6"><b>Zadanie 4.</b> Wyszukaj informację o pierwszym telefonie komórkowym w Polsce. Otwórz co najmniej dwie strony i porównaj, co na nich napisano.</label></div>
+<div class="task"><input type="checkbox" id="t7"><label for="t7"><b>Zadanie 5.</b> Dla jednej ze stron sprawdź: kto jest autorem i kiedy tekst opublikowano.</label></div>
+<div class="notes"><b>✏️ Zapisz w zeszycie</b><div class="page">
+<p><u>Jak sprawdzić, czy informacja jest prawdziwa?</u></p>
+<p>1. Sprawdzam <span class="gap"></span></p>
+<p>2. Sprawdzam <span class="gap"></span></p>
+<p>3. Porównuję <span class="gap"></span></p>
+<p>Strona, którą sprawdziłem(-am):</p>
+<p>adres: <span class="gap"></span> autor: <span class="gap"></span></p>
+<p>data: <span class="gap"></span> czy wiarygodna? TAK / NIE</p>
+</div></div>
+</section>
+
+<section id="c4">
+<h2>4. Prace innych osób</h2>
+<p>Każdy tekst, zdjęcie czy piosenka ma autora, który ma do nich prawo (prawo autorskie). Nie wolno ich przepisywać i podpisywać swoim nazwiskiem.</p>
+<p>Na lekcjach w szkole możesz korzystać z cudzych prac, ale zawsze podaj <b>adres strony, datę publikacji i autora</b> (albo pseudonim, jeśli tak jest podpisany). Niektóre dzieła są w <b>domenie publicznej</b>, czyli można z nich korzystać bez pytania o zgodę.</p>
+<div class="task"><input type="checkbox" id="t8"><label for="t8"><b>Zadanie 6.</b> Sprawdź, czy bajki Andersena są w domenie publicznej. Jeśli tak, zapisz tytuł jednej z nich.</label></div>
+<div class="task"><input type="checkbox" id="t9"><label for="t9"><b>Zadanie 7.</b> Wejdź na lektury.gov.pl, wyszukaj „Czerwony Kapturek” i sprawdź, jak działa przycisk <i>Czytaj w przeglądarce</i>.</label></div>
+<div class="notes"><b>✏️ Zapisz w zeszycie</b><div class="page">
+<p><u>Cudze prace</u></p>
+<p>Gdy korzystam z cudzej pracy, podaję:</p>
+<ul><li><span class="gap"></span></li><li><span class="gap"></span></li><li><span class="gap"></span></li></ul>
+<p>Domena publiczna to <span class="gap"></span></p>
+<p>Tytuł bajki Andersena: <span class="gap"></span></p>
+</div></div>
+</section>
+
+<section id="c5">
+<h2>5. Zapisujemy informacje w dokumencie</h2>
+<h3>Krok po kroku: tekst</h3>
+<p><b>Krok 1.</b> Zaznacz fragment tekstu na stronie i skopiuj go (prawy przycisk myszy, <i>Kopiuj</i>).</p>
+<p><b>Krok 2.</b> Wejdź do dokumentu tekstowego, kliknij prawym przyciskiem myszy i wybierz <i>Wklej</i>.</p>
+<p><b>Krok 3.</b> Pod tekstem dopisz źródło: <i>Autor, Adres strony, Data skopiowania tekstu</i>.</p>
+<h3>Krok po kroku: obrazek</h3>
+<p>Kliknij obrazek prawym przyciskiem myszy i wybierz <i>Zapisz obraz jako</i>. Nadaj nazwę, zanim zapiszesz.</p>
+<div class="task"><input type="checkbox" id="t10"><label for="t10">Znajdź informację o „Katarynce”, skopiuj fragment tekstu i wklej go do dokumentu o nazwie <i>Katarynka</i>.</label></div>
+<div class="task"><input type="checkbox" id="t11"><label for="t11">Pod tekstem dopisz źródło: autor, adres strony, data skopiowania.</label></div>
+<div class="task"><input type="checkbox" id="t12"><label for="t12"><b>Zadanie 8.</b> Zapisz obraz bohatera ulubionego filmu pod nazwą <i>bohater</i> i tekst ulubionej piosenki lub wiersza pod nazwą <i>ulubiony_tekst</i>.</label></div>
+<div class="notes"><b>✏️ Zapisz w zeszycie</b><div class="page">
+<p><u>Jak zapisać tekst z internetu?</u></p>
+<p>1. <span class="gap"></span> fragment i kliknij <span class="gap"></span></p>
+<p>2. W dokumencie kliknij <span class="gap"></span></p>
+<p>3. Na końcu dopisz: <span class="gap"></span>, <span class="gap"></span>, <span class="gap"></span></p>
+<p>Obrazek zapisuję: prawy przycisk myszy → <span class="gap"></span></p>
+</div></div>
+</section>
+
+<section id="c6">
+<h2>Czy już umiem?</h2>
+<p>Zrób samodzielnie. Zapisz odpowiedzi w dokumencie tekstowym.</p>
+<div class="task"><input type="checkbox" id="t13"><label for="t13"><b>1. Wyniki wyszukiwania.</b> Porównaj wyniki dla hasła „mysz komputerowa” oraz „pierwsza mysz komputerowa”. Potem tak samo dla telefonów komórkowych i historii telefonów komórkowych. Zapisz wnioski w dokumencie <i>wyniki_wyszukiwania</i>.</label></div>
+<div class="task"><input type="checkbox" id="t14"><label for="t14"><b>2. Sprawdzamy informacje.</b> Sprawdź, czy zdania podane przez nauczyciela są prawdziwe. Przy każdym zapisz „Prawda” lub „Fałsz” i zapisz dokument jako <i>sprawdzone_tresci</i>.</label></div>
+<div class="task"><input type="checkbox" id="t15"><label for="t15"><b>3. Różnice w wyszukiwarkach.</b> Wyszukaj to samo w dwóch wyszukiwarkach (np. Google i Bing) i zapisz, czym się różnią wyniki. Dokument: <i>wyszukiwarki_roznice</i>.</label></div>
+<div class="notes"><b>✏️ Zapisz w zeszycie</b><div class="page">
+<p><u>Moje podsumowanie</u></p>
+<p>Najważniejsze rzeczy z tej lekcji:</p>
+<p>1. <span class="gap"></span></p>
+<p>2. <span class="gap"></span></p>
+<p>Najtrudniejsze było <span class="gap"></span></p>
+</div></div>
+</section>
+<section id="wynik" class="rate">
+<h2>Ocena pracy</h2>
+<p><label for="nr"><b>Mój numer w dzienniku:</b></label><br><select id="nr"><option value="">wybierz numer</option></select></p>
+<div class="big" id="pct" aria-live="polite">0%</div>
+<table>
+<tr><td>Wykonane zadania (do 30%)</td><td id="r1"></td></tr>
+<tr><td>Wklejone odpowiedzi (do 40%)</td><td id="r2"></td></tr>
+<tr><td>Dodane obrazki (do 15%)</td><td id="r3"></td></tr>
+<tr><td>Notatki w zeszycie (do 15%)</td><td id="r4"></td></tr>
+</table>
+<p class="hint">To ocena automatyczna: liczy się, ile zadań zrobiłeś(-aś), ile pól uzupełniłeś(-aś) i ile notatek masz w zeszycie. Obrazki znikną po zamknięciu strony, więc pokaż pracę nauczycielowi, zanim ją zamkniesz.</p>
+<p><label for="ocena"><b>Ocena nauczyciela (%):</b></label> <input type="number" id="ocena" min="0" max="100"></p>
+<p class="noprint"><button type="button" id="kop">Kopiuj moje odpowiedzi</button><a id="sheet" href="#wynik" target="_blank" rel="noopener" hidden>Otwórz arkusz Google</a> <button type="button" id="wys" hidden>Wyślij odpowiedzi nauczycielowi</button></p>
+<p class="hint noprint" id="kmsg">Wybierz swój numer, kliknij „Kopiuj moje odpowiedzi”, potem otwórz arkusz i wklej w swoim wierszu (Ctrl+V).</p>
+<button type="button" class="noprint" onclick="window.print()">Drukuj lub zapisz jako PDF</button>
+</section>
+<div class="done" id="done">Brawo! Zrobiłeś(-aś) wszystkie zadania. Pokaż zeszyt nauczycielowi.</div>
+</main>
+<script>
+(function(){
+var boxes=[].slice.call(document.querySelectorAll('.task input')),cnt=document.getElementById('cnt'),fill=document.getElementById('fill'),done=document.getElementById('done');
+function upd(){var n=boxes.filter(function(b){return b.checked}).length;cnt.textContent='Zadania: '+n+' / '+boxes.length;fill.style.width=(100*n/boxes.length)+'%';done.style.display=n===boxes.length?'block':'none';
+try{localStorage.setItem('lekcja3',JSON.stringify(boxes.map(function(b){return b.checked})))}catch(e){}}
+try{var s=JSON.parse(localStorage.getItem('lekcja3')||'[]');boxes.forEach(function(b,i){b.checked=!!s[i]})}catch(e){}
+boxes.forEach(function(b){b.addEventListener('change',upd)});upd();
+})();
+</script>
+<script>
+(function(){
+var D=document,key='lekcja3b',st={};
+try{st=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(key,JSON.stringify(st))}catch(e){}}
+function after(id,node){var t=D.getElementById(id).closest('.task');t.parentNode.insertBefore(node,t.nextSibling)}
+var T={t5:'Wklej tutaj odpowiedź: rok i nazwa komputera',t6:'Wklej tutaj swoje wnioski z porównania stron',t7:'Wklej tutaj: autor, data publikacji, adres strony',t8:'Wklej tutaj odpowiedź',t10:'Wklej tutaj skopiowany fragment o Katarynce',t11:'Wklej tutaj źródło: autor, adres strony, data skopiowania',t12:'Wklej tutaj krótki fragment ulubionej piosenki lub wiersza',t13:'Wklej tutaj swoje wnioski',t14:'Wklej tutaj swoje odpowiedzi: Prawda lub Fałsz',t15:'Wklej tutaj opis różnic'};
+Object.keys(T).forEach(function(id){var d=D.createElement('div'),l=D.createElement('label'),x=D.createElement('textarea');d.className='ans';x.id='a_'+id;l.htmlFor=x.id;l.textContent=T[id];x.rows=3;x.value=st[x.id]||'';d.appendChild(l);d.appendChild(x);after(id,d)});
+function mkImg(id,label){var d=D.createElement('div');d.className='img';d.innerHTML='<span>'+label+'</span><div class="drop" tabindex="0"><input type="file" accept="image/*" aria-label="Wybierz plik z obrazkiem"><span>albo kliknij tutaj i naciśnij Ctrl+V, aby wkleić obrazek</span><img alt="Dodany obrazek"></div>';after(id,d);var box=d.querySelector('.drop'),im=d.querySelector('img'),f=d.querySelector('input');function set(file){if(!file||file.type.indexOf('image/')!==0)return;im.src=URL.createObjectURL(file);im.className='on';box.setAttribute('data-has','1');calc()}f.addEventListener('change',function(){set(f.files[0])});box.addEventListener('paste',function(e){var fl=(e.clipboardData||{}).files;if(fl&&fl.length)set(fl[0])})}
+mkImg('t3','Dodaj znaleziony obrazek bohatera');
+mkImg('t12','Dodaj obrazek zapisany na komputerze pod nazwą bohater');
+D.querySelectorAll('.notes').forEach(function(n,i){var l=D.createElement('label'),c;l.className='nb';l.innerHTML='<input type="checkbox"> Notatka w zeszycie jest gotowa';c=l.firstChild;c.id='nb'+i;c.checked=!!st[c.id];n.parentNode.insertBefore(l,n.nextSibling)});
+var nr=D.getElementById('nr'),oc=D.getElementById('ocena');for(var k=1;k<=28;k++){var o=D.createElement('option');o.value=k;o.textContent=k;nr.appendChild(o)}nr.value=st.nr||'';oc.value=st.ocena||'';
+function r(list,fn){list=[].slice.call(list);return list.length?list.filter(fn).length/list.length:0}
+function calc(){var p1=r(D.querySelectorAll('.task input'),function(x){return x.checked}),p2=r(D.querySelectorAll('.ans textarea'),function(x){return x.value.trim().length>=10}),p3=r(D.querySelectorAll('.drop'),function(x){return x.getAttribute('data-has')}),p4=r(D.querySelectorAll('.nb input'),function(x){return x.checked});
+D.getElementById('r1').textContent=Math.round(p1*30)+' / 30';D.getElementById('r2').textContent=Math.round(p2*40)+' / 40';D.getElementById('r3').textContent=Math.round(p3*15)+' / 15';D.getElementById('r4').textContent=Math.round(p4*15)+' / 15';
+D.getElementById('pct').textContent=Math.round(p1*30+p2*40+p3*15+p4*15)+'%'}
+function h(e){var t=e.target;if(t.tagName==='TEXTAREA'||t.id==='nr'||t.id==='ocena')st[t.id]=t.value;if(t.id&&t.id.indexOf('nb')===0)st[t.id]=t.checked;save();calc()}
+var SHEET='';if(SHEET){var sa=D.getElementById('sheet');sa.href=SHEET;sa.hidden=false}
+var SEND='https://script.google.com/macros/s/AKfycbyTvr6TQmQnlQIegYBAZQnE1GqaOfgZGbwBxLJBN01fPBOEC6OKjLHLm_pujvxyOVyn/exec',wb=D.getElementById('wys');if(SEND){wb.hidden=false;D.getElementById('kop').hidden=true}
+wb.addEventListener('click',function(){if(!nr.value){msg('Najpierw wybierz swój numer w dzienniku.');return}var a=[];D.querySelectorAll('.ans textarea').forEach(function(x){a.push(x.value.trim())});msg('Wysyłam...');fetch(SEND,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({numer:nr.value,odpowiedzi:a,wynik:D.getElementById('pct').textContent})}).then(function(){msg('Wysłano! Dziękuję.')},function(){msg('Nie udało się wysłać. Spróbuj jeszcze raz.')})});
+function msg(s){D.getElementById('kmsg').textContent=s}
+D.getElementById('kop').addEventListener('click',function(){if(!nr.value){msg('Najpierw wybierz swój numer w dzienniku.');return}var row=[nr.value];D.querySelectorAll('.ans textarea').forEach(function(x){row.push(x.value.replace(/\s+/g,' ').trim())});row.push(D.getElementById('pct').textContent);var txt=row.join('\t'),ok='Skopiowano! Otwórz arkusz i wklej w swoim wierszu (Ctrl+V).';function fb(){var ta=D.createElement('textarea');ta.value=txt;D.body.appendChild(ta);ta.select();try{D.execCommand('copy');msg(ok)}catch(e){msg('Nie udało się skopiować.')}D.body.removeChild(ta)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){msg(ok)},fb)}else{fb()}});
+D.addEventListener('input',h);D.addEventListener('change',h);calc();
+})();
+</script>
+</body>
+</html>
