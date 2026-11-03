@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scratch dla klas 2–3</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;700;800&display=swap">
+<style>
+:root{--bg:#f4f1fb;--ink:#3b2a6b;--text:#2c2c3a;--muted:#6a6783;--card:#fff;--line:#e2dcf3;--purple:#7a56d4;--ruch:#4c97ff;--pisak:#0fbd8c;--kontrola:#ffab19}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:19px/1.55 Nunito,"Segoe UI",system-ui,sans-serif}
+header{background:linear-gradient(150deg,#8a63e0,#5a3db4);color:#fff;text-align:center;padding:34px 18px 54px;position:relative}
+header::after{content:"";position:absolute;left:-5%;right:-5%;bottom:-1px;height:30px;background:var(--bg);border-radius:50% 50% 0 0/100% 100% 0 0}
+h1{font:600 clamp(1.9rem,5vw,2.8rem)/1.1 Fredoka,Nunito,system-ui,sans-serif;margin:0 0 6px}
+header p{margin:0;color:#e6dcff}
+.home{display:inline-block;margin-top:12px;color:#fff;font-weight:800;text-decoration:underline}
+main{max-width:860px;margin:0 auto;padding:0 16px 70px}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px}
+nav button{font:600 1.1rem Fredoka,Nunito,system-ui,sans-serif;border:3px solid var(--purple);background:#fff;color:var(--purple);border-radius:999px;padding:8px 20px;cursor:pointer}
+nav button[aria-current="true"]{background:var(--purple);color:#fff}
+nav button:focus-visible,summary:focus-visible,.ok input:focus-visible{outline:4px solid #ffb300;outline-offset:3px}
+.lekcja{display:none}.lekcja.on{display:block}
+h2{font:600 1.8rem/1.2 Fredoka,Nunito,system-ui,sans-serif;color:var(--ink);margin:0 0 6px}
+.cel{background:#fff3c9;border-radius:16px;padding:14px 18px;margin:12px 0 22px;font-weight:700}
+.krok{display:flex;gap:16px;background:var(--card);border-radius:20px;padding:20px;margin:0 0 18px;box-shadow:0 6px 18px rgba(60,40,110,.1)}
+.num{flex:none;width:46px;height:46px;border-radius:50%;background:var(--purple);color:#fff;font:600 1.5rem/46px Fredoka,sans-serif;text-align:center}
+.tresc{flex:1;min-width:0}
+h3{margin:0 0 6px;font:600 1.3rem/1.25 Fredoka,Nunito,system-ui,sans-serif;color:var(--ink)}
+p{margin:0 0 10px}
+.lvl{display:inline-block;font-size:.82rem;font-weight:800;border-radius:999px;padding:2px 12px;margin-bottom:6px}
+.g{background:#d9f5e6;color:#17784a}.y{background:#fff0c2;color:#8a6200}.r{background:#ffd9d9;color:#a12626}
+.blocks{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;margin:10px 0 12px;padding:14px;background:#f2f6ff;border-radius:14px;overflow-x:auto}
+.stack{display:inline-flex;flex-direction:column;gap:3px}
+.blk{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:8px;color:#fff;font-weight:800;font-size:1rem;box-shadow:0 2px 0 rgba(0,0,0,.2);white-space:nowrap}
+.blk i{font-style:normal;background:#fff;color:#444;border-radius:999px;padding:0 11px;min-width:2.3em;text-align:center}
+.ruch{background:var(--ruch)}.pisak{background:var(--pisak)}.kontrola{background:var(--kontrola)}
+.c{display:inline-block}.c>.blk{border-radius:8px 8px 0 0;display:flex}
+.c .in{border-left:18px solid var(--kontrola);padding:4px 0 4px 6px}
+.c::after{content:"";display:block;height:16px;background:var(--kontrola);border-radius:0 0 8px 8px}
+.ok{display:inline-flex;align-items:center;gap:10px;font-weight:800;cursor:pointer;margin:2px 0}
+.ok input{width:28px;height:28px;accent-color:#2e9b5e}
+.krok.done{outline:3px solid #2e9b5e}
+details{margin-top:8px}
+summary{cursor:pointer;font-weight:800;color:var(--purple)}
+.licznik{font-weight:800;color:var(--muted);margin:0 0 14px}
+.fin{display:none;text-align:center;font:600 1.5rem Fredoka,sans-serif;color:#2e9b5e;padding:10px}
+@media (max-width:520px){body{font-size:18px}.krok{padding:16px;gap:12px}.num{width:40px;height:40px;line-height:40px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+<h1>Scratch dla klas 2–3</h1>
+<p>Wybierz lekcję i rób kroki po kolei. Kliknij „Zrobione”, gdy skończysz krok.</p>
+<a class="home" href="index.html">Wróć na stronę główną</a>
+</header>
+<main>
+<nav id="nav" aria-label="Lekcje"></nav>
+
+<!-- ============ LEKCJA 1 ============ -->
+<section class="lekcja" id="lekcja-1" data-title="Lekcja 1: Kwadrat">
+<h2>Lekcja 1. Rysujemy kwadrat</h2>
+<div class="cel">🎯 Cel: kotek ma narysować kwadrat. Kwadrat ma 4 takie same boki.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Przyłóż pisak</h3>
+<p>Wejdź do grupy <b>Pisak</b> (zielona ikonka pisaka) i przeciągnij ten klocek na pole do skryptów. Bez niego kotek nic nie narysuje.</p>
+<div class="blocks"><span class="blk pisak">Przyłóż pisak</span></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Nie widzisz grupy Pisak? Kliknij niebieski przycisk w lewym dolnym rogu i wybierz rozszerzenie „Pisak”.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Pierwszy bok</h3>
+<p>Z grupy <b>Ruch</b> (niebieska) weź dwa klocki i połącz je pod klockiem z kroku 1. Wpisz liczby jak na obrazku. Potem <b>kliknij</b> na cały zestaw. Kotek narysuje jeden bok.</p>
+<div class="blocks"><div class="stack">
+<span class="blk pisak">Przyłóż pisak</span>
+<span class="blk ruch">przesuń o <i>100</i> kroków</span>
+<span class="blk ruch">obróć ↻ o <i>90</i> stopni</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Klocki muszą się „kleić” jeden pod drugim. Jeśli się nie kleją, przysuń je bliżej.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Cztery boki</h3>
+<p>Kwadrat ma <b>4 boki</b>. Dołóż jeszcze trzy takie same pary klocków. Najłatwiej: kliknij prawym przyciskiem na klocek „przesuń” i wybierz <b>Duplikuj</b>. Potem kliknij cały zestaw.</p>
+<div class="blocks"><div class="stack">
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span>
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span>
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span>
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Policz na ekranie: czy kotek narysował 4 boki i wrócił tam, gdzie zaczął?</p></details>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Krótszy skrypt: powtórz</h3>
+<p>Te same klocki powtarzają się 4 razy. Z grupy <b>Kontrola</b> (pomarańczowa) weź klocek <b>„powtórz”</b>, wpisz 4 i włóż do środka jedną parę klocków.</p>
+<div class="blocks"><div class="stack"><span class="blk pisak">Przyłóż pisak</span>
+<div class="c"><span class="blk kontrola">powtórz <i>4</i></span><div class="in"><div class="stack">
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span></div></div></div></div></div>
+<p><b>Pytanie:</b> dlaczego wpisaliśmy 4 i dlaczego 90?</p>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Kwadrat ma 4 boki, więc powtarzamy 4 razy. Cztery obroty po 90 stopni to razem pełny obrót dookoła.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Zrób swój kwadrat</h3>
+<p>Spróbuj coś zmienić:</p>
+<ul>
+<li>większy albo mniejszy kwadrat (zmień liczbę 100),</li>
+<li>inny kolor linii,</li>
+<li>grubsza linia.</li>
+</ul>
+<div class="blocks">
+<span class="blk pisak">Ustaw kolor pisaka na <i>🎨</i></span>
+<span class="blk pisak">Ustaw rozmiar pisaka na <i>5</i></span>
+<span class="blk pisak">wyczyść wszystko</span>
+<span class="blk pisak">Podnieś pisak</span></div>
+<p>Klocek „wyczyść wszystko” zmazuje rysunek. „Podnieś pisak” sprawia, że kotek przestaje rysować.</p>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Zawołaj panią i pokaż swój kwadrat. Powiedz, ile ma boków i ile stopni ma każdy obrót.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ LEKCJA 2 ============ -->
+<section class="lekcja" id="lekcja-2" data-title="Lekcja 2: Trójkąt">
+<h2>Lekcja 2. Rysujemy trójkąt</h2>
+<div class="cel">🎯 Cel: kotek ma narysować trójkąt. Trójkąt ma 3 takie same boki.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Ustaw kotka na start</h3>
+<p>Zbuduj taki zestaw i <b>kliknij</b> go. Kotek wróci na środek, rysunek zniknie i kotek będzie gotowy do rysowania.</p>
+<div class="blocks"><div class="stack">
+<span class="blk pisak">wyczyść wszystko</span>
+<span class="blk ruch">Idź do x: <i>0</i> y: <i>0</i></span>
+<span class="blk ruch">ustaw kierunek na <i>90</i></span>
+<span class="blk pisak">Przyłóż pisak</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>„wyczyść wszystko” i „Przyłóż pisak” są w grupie Pisak. Pozostałe klocki są w grupie Ruch.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Pierwszy bok</h3>
+<p>Dołóż dwa klocki z grupy Ruch. Uwaga: w trójkącie obracamy się o <b>120</b> stopni, a nie o 90.</p>
+<div class="blocks"><div class="stack">
+<span class="blk ruch">przesuń o <i>100</i> kroków</span>
+<span class="blk ruch">obróć ↻ o <i>120</i> stopni</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Trzy boki</h3>
+<p>Trójkąt ma <b>3 boki</b>. Dołóż jeszcze dwie takie same pary klocków (prawy przycisk i „Duplikuj”). Kliknij cały zestaw.</p>
+<div class="blocks"><div class="stack">
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>120</i> stopni</span>
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>120</i> stopni</span>
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>120</i> stopni</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Użyj klocka „powtórz”</h3>
+<p>Zastąp trzy pary jednym klockiem „powtórz” z grupy Kontrola. Ile razy trzeba powtórzyć?</p>
+<div class="blocks"><div class="c"><span class="blk kontrola">powtórz <i>3</i></span><div class="in"><div class="stack">
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>120</i> stopni</span></div></div></div></div>
+<p><b>Pytanie:</b> dlaczego wpisaliśmy 3 i dlaczego 120?</p>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Trójkąt ma 3 boki, więc powtarzamy 3 razy. Trzy obroty po 120 stopni to razem pełny obrót dookoła.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Twój trójkąt</h3>
+<p>Zmień liczbę 100, żeby trójkąt był większy albo mniejszy. Zmień też kolor i grubość linii.</p>
+<div class="blocks"><span class="blk pisak">Ustaw kolor pisaka na <i>🎨</i></span><span class="blk pisak">Ustaw rozmiar pisaka na <i>3</i></span></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Zawołaj panią i pokaż trójkąt. Powiedz, ile ma boków i ile stopni ma każdy obrót.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ LEKCJA 3 ============ -->
+<section class="lekcja" id="lekcja-3" data-title="Lekcja 3: Prostokąt">
+<h2>Lekcja 3. Rysujemy prostokąt</h2>
+<div class="cel">🎯 Cel: kotek ma narysować prostokąt. Ma dwa dłuższe i dwa krótsze boki.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Ustaw kotka na start</h3>
+<p>Zbuduj zestaw startowy i go <b>kliknij</b>.</p>
+<div class="blocks"><div class="stack">
+<span class="blk pisak">wyczyść wszystko</span>
+<span class="blk ruch">Idź do x: <i>0</i> y: <i>0</i></span>
+<span class="blk ruch">ustaw kierunek na <i>90</i></span>
+<span class="blk pisak">Przyłóż pisak</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Dwa różne boki</h3>
+<p>Prostokąt ma boki różnej długości: najpierw długi (150), potem krótki (80). Zbuduj zestaw i kliknij go.</p>
+<div class="blocks"><div class="stack">
+<span class="blk ruch">przesuń o <i>150</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span>
+<span class="blk ruch">przesuń o <i>80</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Kotek narysował dwa boki. Dołóż jeszcze raz te same cztery klocki, a prostokąt będzie gotowy.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Powtórz 2 razy</h3>
+<p>Włóż te cztery klocki do klocka „powtórz”. Ile razy trzeba powtórzyć?</p>
+<div class="blocks"><div class="c"><span class="blk kontrola">powtórz <i>2</i></span><div class="in"><div class="stack">
+<span class="blk ruch">przesuń o <i>150</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span>
+<span class="blk ruch">przesuń o <i>80</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span></div></div></div></div>
+<p><b>Pytanie:</b> dlaczego tym razem powtarzamy tylko 2 razy?</p>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>W środku jest jeden długi i jeden krótki bok. Dwa takie zestawy dają wszystkie 4 boki prostokąta.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Zostaw ślad kotka</h3>
+<p>Zmień liczby 150 i 80 na swoje. Kliknij klocek „Stempluj”, żeby kotek zostawił odcisk na scenie.</p>
+<div class="blocks"><span class="blk pisak">Stempluj</span><span class="blk pisak">Podnieś pisak</span></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Zawołaj panią i pokaż prostokąt. Powiedz, czym różni się od kwadratu.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ LEKCJA 4 ============ -->
+<section class="lekcja" id="lekcja-4" data-title="Lekcja 4: Kolorowy wzór">
+<h2>Lekcja 4. Kolorowy wzór</h2>
+<div class="cel">🎯 Cel: kwadrat zmienia kolory, a potem robimy z niego wzór.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Ustaw kotka na start</h3>
+<p>Zbuduj zestaw startowy i go <b>kliknij</b>.</p>
+<div class="blocks"><div class="stack">
+<span class="blk pisak">wyczyść wszystko</span>
+<span class="blk ruch">Idź do x: <i>0</i> y: <i>0</i></span>
+<span class="blk ruch">ustaw kierunek na <i>90</i></span>
+<span class="blk pisak">Przyłóż pisak</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Kwadrat z kolorem</h3>
+<p>Zbuduj kwadrat z klockiem „powtórz”. Dołóż klocek, który zmienia kolor pisaka o 20 przy każdym boku. Kliknij zestaw.</p>
+<div class="blocks"><div class="c"><span class="blk kontrola">powtórz <i>4</i></span><div class="in"><div class="stack">
+<span class="blk pisak">Zmień <i>Kolor ▾</i> pisaka o <i>20</i></span>
+<span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span></div></div></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Klocek „Zmień Kolor pisaka o” jest w grupie Pisak. Włóż go do środka, nad klocek „przesuń”.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Gruba linia</h3>
+<p>Na samym początku zestawu (nad klockiem „powtórz”) dołóż klocek, który ustawia grubość pisaka.</p>
+<div class="blocks"><span class="blk pisak">Ustaw rozmiar pisaka na <i>8</i></span></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Zrób wzór</h3>
+<p>Dołóż pod klockiem „powtórz” jeszcze jeden klocek z grupy Ruch. Potem kliknij cały zestaw <b>wiele razy</b> i patrz, co się dzieje.</p>
+<div class="blocks"><span class="blk ruch">obróć ↻ o <i>30</i> stopni</span></div>
+<p><b>Pytanie:</b> co się stało po kilku kliknięciach?</p>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Każde kliknięcie rysuje nowy kwadrat, trochę obrócony. Z wielu kwadratów powstaje wzór jak kwiat.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Twój własny wzór</h3>
+<p>Zmień liczbę 30 na inną, np. 20 albo 45. Sprawdź, jaki wzór powstanie. Użyj klocka „wyczyść wszystko”, żeby zacząć od nowa.</p>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Zawołaj panią i pokaż swój wzór. Powiedz, którą liczbę zmieniłeś(-aś).</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!--
+===== JAK DODAĆ KOLEJNĄ LEKCJĘ =====
+1. Skopiuj cały blok <section ...> ... </section> powyżej.
+2. Wklej go pod spodem i zmień: id="lekcja-5" oraz data-title="Lekcja 5: Twój temat".
+3. Zmień treść kroków. Zakładka z nazwą lekcji pojawi się sama.
+Klocki: <span class="blk ruch">…</span> (niebieski), class="blk pisak" (zielony), class="blk kontrola" (pomarańczowy).
+Liczba w klocku: <i>90</i>.
+-->
+
+<p class="fin" id="fin">🎉 Brawo! Wszystkie kroki zrobione.</p>
+</main>
+<script>
+(function(){
+var D=document,secs=[].slice.call(D.querySelectorAll('.lekcja')),nav=D.getElementById('nav');
+secs.forEach(function(s){var b=D.createElement('button');b.type='button';b.textContent=s.getAttribute('data-title');b.setAttribute('data-id',s.id);b.addEventListener('click',function(){show(s.id)});nav.appendChild(b)});
+function show(id){secs.forEach(function(s){s.classList.toggle('on',s.id===id)});[].forEach.call(nav.children,function(b){b.setAttribute('aria-current',b.getAttribute('data-id')===id?'true':'false')});try{history.replaceState(null,'','#'+id)}catch(e){}count()}
+function count(){var s=D.querySelector('.lekcja.on'),f=D.getElementById('fin');if(!s)return;var all=s.querySelectorAll('.ok input'),n=0;[].forEach.call(all,function(c){var k=c.closest('.krok');k.classList.toggle('done',c.checked);if(c.checked)n++});f.style.display=(all.length&&n===all.length)?'block':'none'}
+D.addEventListener('change',count);
+var h=(location.hash||'').slice(1);show(D.getElementById(h)&&D.getElementById(h).classList.contains('lekcja')?h:secs[0].id);
+})();
+</script>
+</body>
+</html>
