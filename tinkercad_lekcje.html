@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tinkercad: lekcje</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;700;800&display=swap">
+<style>
+:root{--bg:#eef8f6;--ink:#0b4f48;--text:#26343a;--muted:#5b7279;--card:#fff;--teal:#0b9d8a;--teal2:#087568}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:19px/1.55 Nunito,"Segoe UI",system-ui,sans-serif}
+header{background:linear-gradient(150deg,#12b5a0,#076b60);color:#fff;text-align:center;padding:34px 18px 54px;position:relative}
+header::after{content:"";position:absolute;left:-5%;right:-5%;bottom:-1px;height:30px;background:var(--bg);border-radius:50% 50% 0 0/100% 100% 0 0}
+h1{font:600 clamp(1.9rem,5vw,2.8rem)/1.1 Fredoka,Nunito,system-ui,sans-serif;margin:0 0 6px}
+header p{margin:0;color:#d5f5ef}
+.home{display:inline-block;margin-top:12px;color:#fff;font-weight:800;text-decoration:underline}
+main{max-width:860px;margin:0 auto;padding:0 16px 70px}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px}
+nav button{font:600 1.1rem Fredoka,Nunito,system-ui,sans-serif;border:3px solid var(--teal);background:#fff;color:var(--teal2);border-radius:999px;padding:8px 20px;cursor:pointer}
+nav button[aria-current="true"]{background:var(--teal);color:#fff}
+nav button:focus-visible,summary:focus-visible,.ok input:focus-visible{outline:4px solid #ffb300;outline-offset:3px}
+.lekcja{display:none}.lekcja.on{display:block}
+h2{font:600 1.8rem/1.2 Fredoka,Nunito,system-ui,sans-serif;color:var(--ink);margin:0 0 6px}
+.cel{background:#fff3c9;border-radius:16px;padding:14px 18px;margin:12px 0 22px;font-weight:700}
+.krok{display:flex;gap:16px;background:var(--card);border-radius:20px;padding:20px;margin:0 0 18px;box-shadow:0 6px 18px rgba(10,80,70,.1)}
+.num{flex:none;width:46px;height:46px;border-radius:50%;background:var(--teal);color:#fff;font:600 1.5rem/46px Fredoka,sans-serif;text-align:center}
+.tresc{flex:1;min-width:0}
+h3{margin:0 0 6px;font:600 1.3rem/1.25 Fredoka,Nunito,system-ui,sans-serif;color:var(--ink)}
+p{margin:0 0 10px}
+ul{margin:0 0 10px;padding-left:22px}
+.lvl{display:inline-block;font-size:.82rem;font-weight:800;border-radius:999px;padding:2px 12px;margin-bottom:6px}
+.g{background:#d9f5e6;color:#17784a}.y{background:#fff0c2;color:#8a6200}.r{background:#ffd9d9;color:#a12626}
+.shapes{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 12px;padding:14px;background:#f1faf8;border-radius:14px}
+.sh{display:inline-flex;align-items:center;gap:8px;background:#e1f6f2;border:2px solid var(--teal);border-radius:12px;padding:6px 14px;font-weight:800;color:var(--ink)}
+.sh.hole{background:#fff;border-style:dashed}
+.ideas{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:10px 0 12px}
+.idea{background:#f1faf8;border:2px solid #cfeee9;border-radius:14px;padding:10px;text-align:center;font-weight:800}
+.idea span{display:block;font-size:2rem}
+.ok{display:flex;align-items:center;gap:10px;font-weight:800;cursor:pointer;margin:4px 0}
+.ok input{width:28px;height:28px;flex:none;accent-color:#2e9b5e}
+.krok.done{outline:3px solid #2e9b5e}
+details{margin-top:8px}
+summary{cursor:pointer;font-weight:800;color:var(--teal2)}
+.fig{margin:10px 0;background:#f1faf8;border-radius:14px;padding:10px;text-align:center}.fig svg{max-width:100%;height:auto}.fig figcaption{font-size:.92rem;color:var(--muted);margin-top:4px}
+.legend{font-size:.95rem;color:var(--muted);margin:0 0 10px}
+.fin{display:none;text-align:center;font:600 1.5rem Fredoka,sans-serif;color:#2e9b5e;padding:10px}
+@media (max-width:520px){body{font-size:18px}.krok{padding:16px;gap:12px}.num{width:40px;height:40px;line-height:40px}}
+</style>
+</head>
+<body>
+<header>
+<h1>Tinkercad: lekcje</h1>
+<p>Wybierz lekcję i rób kroki po kolei. Kliknij „Zrobione”, gdy skończysz krok.</p>
+<a class="home" href="index.html">Wróć na stronę główną</a>
+</header>
+<main>
+<p class="legend">Poziom lekcji: 🟢 na początek, 🟡 gdy znasz już podstawy, 🔴 dla chętnych na wyzwania.</p>
+<nav id="nav" aria-label="Lekcje"></nav>
+
+<!-- ============ START: BRELOK ============ -->
+<section class="lekcja" id="brelok" data-title="🟢 Start: Brelok">
+<h2>Start. Mój pierwszy brelok</h2>
+<div class="cel">🎯 Cel: zaprojektuj brelok z otworem na kółko i swoim numerem. Uczymy się przy tym podstaw Tinkercada.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Nowy projekt</h3>
+<p>Zaloguj się do Tinkercada i zrób <b>nowy projekt</b> (nauczyciel pokaże, gdzie kliknąć). Nazwij go: <b>numer z dziennika i „brelok”</b>, np. <b>12_brelok</b>.</p>
+<label class="ok"><input type="checkbox"> Projekt ma nazwę!</label>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Poznaj widok</h3>
+<p>Przeciągnij jeden kształt na niebieską siatkę. Potem poćwicz:</p>
+<ul>
+<li>przytrzymaj <b>prawy przycisk myszy</b> i poruszaj myszą, a obrócisz widok,</li>
+<li><b>kółko myszy</b> przybliża i oddala,</li>
+<li>kształt przesuwasz, trzymając go lewym przyciskiem.</li>
+</ul>
+<label class="ok"><input type="checkbox"> Umiem obracać widok!</label>
+<details><summary>💡 Podpowiedź</summary><p>Zgubiłeś(-aś) kształt? Przybliż widok kółkiem myszy albo poproś nauczyciela o pomoc.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Zrób płytkę breloka</h3>
+<p>Wstaw <b>Pudełko</b> i wpisz rozmiary w milimetrach: długość <b>40</b>, szerokość <b>25</b>, wysokość <b>4</b>. Brelok ma być płaski jak płytka.</p>
+<div class="shapes"><span class="sh">📦 Pudełko: 40 × 25 × 4</span></div>
+<label class="ok"><input type="checkbox"> Mam płytkę!</label>
+<details><summary>💡 Podpowiedź</summary><p>Rozmiary możesz też zmieniać, przeciągając białe kwadraciki na rogach. Wygodniej jest je wpisać.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Wybierz kolor</h3>
+<p>Zaznacz płytkę i wybierz swój ulubiony kolor.</p>
+<label class="ok"><input type="checkbox"> Płytka ma kolor!</label>
+</div></article>
+
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Zrób otwór na kółko</h3>
+<p>Wstaw <b>Walec</b> i zmień go na <b>otwór</b>. Średnica <b>5</b>, wysokość większa niż 4 (np. 8). Ustaw go przy krótszym brzegu płytki, minimum <b>5 mm od krawędzi</b>. Zaznacz płytkę i otwór razem i kliknij <b>Grupuj</b>. W płytce zobaczysz dziurę.</p>
+<div class="shapes"><span class="sh hole">🕳️ Otwór: średnica 5</span></div>
+<label class="ok"><input type="checkbox"> Brelok ma dziurę!</label>
+<details><summary>💡 Podpowiedź</summary><p>Dziura nie powstała? Sprawdź, czy otwór naprawdę przechodzi przez całą płytkę i czy zaznaczyłeś(-aś) oba kształty.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">6</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Dodaj swój numer lub imię</h3>
+<p>Wstaw kształt <b>Tekst</b> i wpisz swój numer z dziennika albo imię. Ustaw tekst <b>na płytce</b> i zrób go cieńszym (wysokość około 2 mm). Zgrupuj tekst z płytką, żeby brelok był jednym kawałkiem.</p>
+<div class="shapes"><span class="sh">🔤 Tekst</span></div>
+<label class="ok"><input type="checkbox"> Mam napis!</label>
+<details><summary>💡 Podpowiedź</summary><p>Tekst ma stać na górze płytki, a nie wisieć nad nią. Obróć widok z boku i sprawdź.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">7</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Zrób brelok o innym kształcie</h3>
+<p>Zamiast prostokąta użyj innego kształtu, np. walca (okrągły brelok) albo gwiazdy lub serca, jeśli znajdziesz je w kształtach. Zrób otwór na kółko i dodaj ozdobę z kilku małych kształtów, np. oczy i uszy dla zwierzątka.</p>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Pokaż brelok na ekranie z każdej strony. Powiedz, z jakich kształtów jest zrobiony i do czego służy otwór.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ ETAP 1 ============ -->
+<section class="lekcja" id="lekcja-1" data-title="🟡 Etap 1: Pomysł i plan">
+<h2>Etap 1. Pomysł i plan</h2>
+<div class="cel">🎯 Cel: wymyślasz, co zbudujesz, i rysujesz plan w zeszycie. Komputer włączysz dopiero w etapie 2.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Wybierz pomysł</h3>
+<p>Wybierz jeden pomysł albo wymyśl własny.</p>
+<div class="ideas">
+<div class="idea"><span>🏠</span>Domek</div><div class="idea"><span>🚗</span>Samochód</div><div class="idea"><span>🐶</span>Zwierzątko</div>
+<div class="idea"><span>🤖</span>Robot</div><div class="idea"><span>🚀</span>Rakieta</div><div class="idea"><span>🔑</span>Brelok</div>
+</div>
+<label class="ok"><input type="checkbox"> Mam pomysł!</label>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Narysuj plan w zeszycie</h3>
+<p>Narysuj swój projekt tak, jak wygląda z przodu. Przy każdej części napisz, z jakiego kształtu ją zrobisz.</p>
+<label class="ok"><input type="checkbox"> Plan narysowany!</label>
+<details><summary>💡 Podpowiedź</summary><p>Rysunek nie musi być ładny. Ma pokazać, z czego składa się projekt.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Wybierz kształty</h3>
+<p>Wypisz w zeszycie co najmniej <b>3 kształty</b>, których użyjesz. Przykłady:</p>
+<div class="shapes"><span class="sh">📦 Pudełko</span><span class="sh">🥫 Walec</span><span class="sh">⚽ Kula</span><span class="sh">🔺 Dach</span></div>
+<label class="ok"><input type="checkbox"> Mam listę kształtów!</label>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Zaplanuj otwór</h3>
+<p>Otwór to kształt, który <b>wycina dziurę</b> w innym kształcie. Zastanów się, gdzie w Twoim projekcie będzie dziura, np. okno, drzwi albo otwór na kółko od breloka. Zaznacz to na rysunku.</p>
+<div class="shapes"><span class="sh hole">🕳️ Otwór</span></div>
+<label class="ok"><input type="checkbox"> Zaplanowałem(-am) otwór!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż plan nauczycielowi</h3>
+<p>Zawołaj panią i pokaż rysunek. Powiedz, z jakich kształtów będzie Twój projekt.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ ETAP 2 ============ -->
+<section class="lekcja" id="lekcja-2" data-title="🟡 Etap 2: Budowanie">
+<h2>Etap 2. Budujemy w Tinkercadzie</h2>
+<div class="cel">🎯 Cel: zbuduj projekt z planu z etapu 1.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Nowy projekt i nazwa</h3>
+<p>Otwórz Tinkercad i zrób nowy projekt. Nazwij go: <b>numer z dziennika i nazwa</b>, np. <b>12_domek</b>.</p>
+<label class="ok"><input type="checkbox"> Projekt ma nazwę!</label>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Zacznij od dużych części</h3>
+<p>Najpierw wstaw największe kształty (podstawa, ściany, korpus). Przeciągnij je na siatkę i ustaw tak, jak na planie. Obracaj widok, żeby zobaczyć projekt z każdej strony.</p>
+<label class="ok"><input type="checkbox"> Duże części gotowe!</label>
+<details><summary>💡 Podpowiedź</summary><p>Kształt „unosi się” nad siatką? Zaznacz go i opuść w dół, aż dotknie siatki albo innego kształtu.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Dodaj małe części i kolory</h3>
+<p>Dołóż mniejsze elementy (okna, koła, oczy, dach). Każdej części możesz nadać <b>kolor</b>. Użyj co najmniej dwóch kolorów.</p>
+<label class="ok"><input type="checkbox"> Małe części i kolory gotowe!</label>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Zrób dziurę otworem</h3>
+<p>Wstaw kształt i zmień go z pełnego na <b>otwór</b>. Ustaw go w środku innego kształtu, a potem zaznacz oba i użyj <b>Grupuj</b>. W kształcie pojawi się dziura.</p>
+<div class="shapes"><span class="sh hole">🕳️ Otwór</span></div>
+<label class="ok"><input type="checkbox"> Mam dziurę!</label>
+<details><summary>💡 Podpowiedź</summary><p>Jeśli dziura się nie pojawia, sprawdź, czy otwór naprawdę dotyka kształtu i czy zaznaczyłeś(-aś) oba kształty.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Powiel część</h3>
+<p>Potrzebujesz dwóch takich samych części (koła, okna, oczy)? Nie rób ich od nowa. Zaznacz część, skopiuj ją (Ctrl+C) i wklej (Ctrl+V). Przesuń kopię na właściwe miejsce.</p>
+<label class="ok"><input type="checkbox"> Skopiowałem(-am) część!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Zawołaj panią i pokaż projekt na ekranie.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ ETAP 3 ============ -->
+<section class="lekcja" id="lekcja-3" data-title="🟡 Etap 3: Dopracuj i pokaż">
+<h2>Etap 3. Dopracuj i pokaż</h2>
+<div class="cel">🎯 Cel: sprawdź swój projekt i pokaż go innym.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Obejrzyj z każdej strony</h3>
+<p>Obracaj widok: z przodu, z tyłu, z góry i z boku. Czy wszystkie części się dotykają? Czy nic nie wisi w powietrzu?</p>
+<label class="ok"><input type="checkbox"> Obejrzałem(-am) z każdej strony!</label>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Sprawdź swoją listę</h3>
+<p>Zaznacz tylko to, co naprawdę jest w projekcie:</p>
+<label class="ok"><input type="checkbox"> Są co najmniej 3 kształty</label>
+<label class="ok"><input type="checkbox"> Są co najmniej 2 kolory</label>
+<label class="ok"><input type="checkbox"> Projekt ma nazwę z numerem</label>
+<details><summary>💡 Podpowiedź</summary><p>Brakuje czegoś z listy? Wróć do Tinkercada i to dodaj.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Zgrupuj projekt</h3>
+<p>Zaznacz wszystkie części (przeciągnij ramką wokół projektu) i użyj <b>Grupuj</b>. Wtedy cały projekt przesuwasz jako jedną rzecz.</p>
+<label class="ok"><input type="checkbox"> Projekt zgrupowany!</label>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Dodaj coś ekstra</h3>
+<p>Wybierz jedno:</p>
+<ul><li>dodaj <b>Tekst</b> ze swoim numerem albo imieniem,</li><li>dodaj drugie piętro albo dodatkowy element,</li><li>zrób dziurę o ciekawym kształcie.</li></ul>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż i opowiedz</h3>
+<p>Pokaż projekt nauczycielowi. Opowiedz: z jakich kształtów jest zbudowany i co było najtrudniejsze.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am) i opowiedziałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ FLEX 1 ============ -->
+<section class="lekcja" id="lekcja-4" data-title="🔴 Flex 1: Wąż z segmentów">
+<h2>Flex 1. Wąż z segmentów</h2>
+<div class="cel">🎯 Cel: zaprojektuj segment z dziurą na gumkę. Z kilku takich segmentów powstanie wąż, który się wygina.</div>
+<details><summary>👩‍🏫 Dla nauczyciela</summary>
+<p>Segmenty drukujemy osobno, a dzieci nawlekają je na cienką gumkę lub sznurek (1–2 mm) z węzłem na końcu. Dzięki temu nie ma ruchomych części drukowanych w jednym kawałku, więc łatwo o udany wydruk. Walce drukują się płasko bez podpór, a kule gorzej. Jeśli nie drukujecie, dzieci pokazują projekt na ekranie.</p></details>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Co to jest zabawka flex?</h3>
+<p>Zabawka <b>flex</b> składa się z wielu części, które się ruszają, więc cała zabawka się wygina. Taki jest wąż, smok albo gąsienica. Zastanów się, jak połączyć części, żeby się nie rozpadły. My użyjemy <b>gumki przez dziurę</b>.</p>
+<figure class="fig"><svg viewBox="0 0 640 230" role="img" aria-labelledby="t1 d1" xmlns="http://www.w3.org/2000/svg"><title id="t1">Wąż flex z segmentów</title><desc id="d1">Wąż zrobiony z jedenastu segmentów nawleczonych na czerwoną gumkę. Wygina się falą.</desc><polyline points="70.0,138.2 120.0,164.1 170.0,168.8 220.0,150.2 270.0,116.8 320.0,83.9 370.0,66.7 420.0,73.0 470.0,100.0 520.0,135.2 570.0,162.5" fill="none" stroke="#c0392b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(570.0 162.5) rotate(20.4)"><rect x="-12.0" y="-16.0" width="24" height="32.0" rx="9" fill="#0b9d8a" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(520.0 135.2) rotate(34.2)"><rect x="-12.0" y="-17.6" width="24" height="35.2" rx="9" fill="#12b5a0" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(470.0 100.0) rotate(34.0)"><rect x="-12.0" y="-19.2" width="24" height="38.4" rx="9" fill="#0b9d8a" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(420.0 73.0) rotate(19.8)"><rect x="-12.0" y="-20.799999999999997" width="24" height="41.599999999999994" rx="9" fill="#12b5a0" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(370.0 66.7) rotate(-6.8)"><rect x="-12.0" y="-22.4" width="24" height="44.8" rx="9" fill="#0b9d8a" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(320.0 83.9) rotate(-28.5)"><rect x="-12.0" y="-24.0" width="24" height="48.0" rx="9" fill="#12b5a0" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(270.0 116.8) rotate(-35.7)"><rect x="-12.0" y="-25.6" width="24" height="51.2" rx="9" fill="#0b9d8a" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(220.0 150.2) rotate(-29.4)"><rect x="-12.0" y="-27.2" width="24" height="54.4" rx="9" fill="#12b5a0" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(170.0 168.8) rotate(-8.6)"><rect x="-12.0" y="-28.8" width="24" height="57.6" rx="9" fill="#0b9d8a" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(120.0 164.1) rotate(18.4)"><rect x="-12.0" y="-30.4" width="24" height="60.8" rx="9" fill="#12b5a0" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(70.0 138.2) rotate(33.5)"><rect x="-15.0" y="-37.0" width="30" height="74" rx="9" fill="#0b9d8a" stroke="#076b60" stroke-width="2.5"/><circle cx="0" cy="0" r="3" fill="#7a1f16"/></g><g transform="translate(70.0 138.2) rotate(33.5)"><circle cx="-4" cy="-17" r="6" fill="#fff"/><circle cx="-4" cy="17" r="6" fill="#fff"/><circle cx="-5.5" cy="-17" r="3" fill="#222"/><circle cx="-5.5" cy="17" r="3" fill="#222"/></g><circle cx="586.0" cy="163.5" r="7" fill="#c0392b"/>
+<text x="18" y="94" font-family="Nunito,sans-serif" font-size="17" font-weight="800" fill="var(--ink)">głowa</text>
+<text x="330" y="218" font-family="Nunito,sans-serif" font-size="17" font-weight="800" fill="#c0392b" text-anchor="middle">gumka przechodzi przez dziury we wszystkich segmentach</text></svg><figcaption>Tak może wyglądać wąż flex: segmenty są osobno, a gumka łączy je w całość, więc wąż się wygina.</figcaption></figure>
+<figure class="fig"><svg viewBox="0 0 560 210" role="img" aria-labelledby="t2 d2" xmlns="http://www.w3.org/2000/svg"><title id="t2">Segmenty na gumce</title><desc id="d2">Cztery segmenty w rzędzie z czerwoną gumką przechodzącą przez środek, na końcu węzeł.</desc><rect x="60" y="60" width="100" height="80" rx="12" fill="#12b5a0" stroke="#076b60" stroke-width="3"/><rect x="180" y="60" width="100" height="80" rx="12" fill="#12b5a0" stroke="#076b60" stroke-width="3"/><rect x="300" y="60" width="100" height="80" rx="12" fill="#12b5a0" stroke="#076b60" stroke-width="3"/><rect x="420" y="60" width="100" height="80" rx="12" fill="#12b5a0" stroke="#076b60" stroke-width="3"/><line x1="30" y1="100" x2="520" y2="100" stroke="#c0392b" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="100" r="11" fill="#c0392b"/>
+<text x="110" y="42" font-family="Nunito,sans-serif" font-size="16" font-weight="800" fill="var(--ink)" text-anchor="middle">segment</text>
+<text x="230" y="170" font-family="Nunito,sans-serif" font-size="16" font-weight="800" fill="var(--ink)" text-anchor="middle">przerwa 1–2 mm</text>
+<text x="32" y="140" font-family="Nunito,sans-serif" font-size="16" font-weight="800" fill="#c0392b" text-anchor="middle">węzeł</text>
+<text x="450" y="190" font-family="Nunito,sans-serif" font-size="16" font-weight="800" fill="#c0392b" text-anchor="middle">gumka w dziurze Ø 4 mm</text>
+<line x1="450" y1="170" x2="450" y2="108" stroke="#c0392b" stroke-width="2"/>
+<line x1="230" y1="150" x2="220" y2="102" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 3" opacity="0"/>
+</svg><figcaption>Z boku: segmenty w rzędzie, przez środek przechodzi gumka, na końcu jest węzeł.</figcaption></figure>
+<label class="ok"><input type="checkbox"> Wiem, czym jest flex!</label>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Zrób jeden segment</h3>
+<p>Wstaw <b>Walec</b> i wpisz jego rozmiary: średnica <b>20</b>, wysokość <b>10</b> (w milimetrach). To będzie jeden segment węża, taki jak monetka.</p>
+<div class="shapes"><span class="sh">🥫 Walec: 20 × 10</span></div>
+<label class="ok"><input type="checkbox"> Mam segment!</label>
+<details><summary>💡 Podpowiedź</summary><p>Rozmiary wpisujesz w okienkach przy zaznaczonym kształcie. Pamiętaj o milimetrach.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Zrób dziurę na gumkę</h3>
+<p>Wstaw drugi Walec i zmień go na <b>otwór</b>. Średnica <b>4</b>, wysokość większa niż segment (np. 14). Ustaw go dokładnie w środku segmentu (użyj <b>Wyrównaj</b>). Zaznacz oba kształty i kliknij <b>Grupuj</b>.</p>
+<div class="shapes"><span class="sh hole">🕳️ Otwór: średnica 4</span></div>
+<label class="ok"><input type="checkbox"> Segment ma dziurę na wylot!</label>
+<details><summary>💡 Podpowiedź</summary><p>Spójrz na segment z góry. Przez środek powinno być widać dziurę przez całą wysokość.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Zrób cały wąż</h3>
+<p>Obróć segment tak, żeby dziura była <b>pozioma</b>. Skopiuj go 6 razy i ustaw w jednym rzędzie, z przerwą 1–2 mm między segmentami. Dziury muszą leżeć na jednej linii. Użyj <b>Wyrównaj</b>.</p>
+<div class="shapes"><span class="sh">🐍 7 segmentów w rzędzie</span></div>
+<p>⚠️ <b>Nie grupuj całego węża.</b> Każdy segment ma zostać osobną częścią. Inaczej powstanie jeden sztywny klocek.</p>
+<label class="ok"><input type="checkbox"> Wąż stoi w rzędzie!</label>
+</div></article>
+
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Zrób głowę</h3>
+<p>Pierwszy segment niech będzie większy (np. średnica 26). Dodaj oczy z małych kul i zgrupuj je z głową. Dziura w głowie nadal musi mieć średnicę 4 i leżeć na tej samej linii.</p>
+<label class="ok"><input type="checkbox"> Wąż ma głowę!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Pokaż wąż i dziury widoczne od przodu. Powiedz, dlaczego nie zgrupowałeś(-aś) całego węża.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ FLEX 2 ============ -->
+<section class="lekcja" id="lekcja-5" data-title="🔴 Flex 2: Własne zwierzątko">
+<h2>Flex 2. Własne zwierzątko flex</h2>
+<div class="cel">🎯 Cel: zaprojektuj własną zabawkę flex z segmentów o różnych rozmiarach.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Wybierz zwierzątko</h3>
+<div class="ideas">
+<div class="idea"><span>🐍</span>Wąż</div><div class="idea"><span>🐛</span>Gąsienica</div><div class="idea"><span>🐟</span>Ryba</div>
+<div class="idea"><span>🐊</span>Krokodyl</div><div class="idea"><span>🐉</span>Smok</div><div class="idea"><span>⭐</span>Własny</div>
+</div>
+<label class="ok"><input type="checkbox"> Wybrałem(-am)!</label>
+</div></article>
+
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Narysuj plan w zeszycie</h3>
+<p>Narysuj zwierzątko z boku. Podziel je na segmenty (co najmniej <b>5</b>) i przy każdym napisz rozmiar, np. środek większy, a ogon mały.</p>
+<label class="ok"><input type="checkbox"> Plan narysowany!</label>
+</div></article>
+
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Zbuduj segmenty o różnych rozmiarach</h3>
+<p>⚠️ Najpierw ustaw rozmiar segmentu, a <b>dopiero potem</b> dodaj otwór o średnicy 4. Gdybyś zmieniał(-a) rozmiar po zgrupowaniu, dziura też zrobiłaby się mniejsza lub większa.</p>
+<div class="shapes"><span class="sh">🥫 Segment</span><span class="sh hole">🕳️ Otwór: średnica 4</span></div>
+<label class="ok"><input type="checkbox"> Wszystkie segmenty gotowe!</label>
+<details><summary>💡 Podpowiedź</summary><p>Zrobiłeś(-aś) segment za dużo albo za mało? Skopiuj segment (Ctrl+C, Ctrl+V) albo usuń niepotrzebny.</p></details>
+</div></article>
+
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Ustaw w rzędzie</h3>
+<p>Ustaw segmenty tak, żeby wszystkie dziury leżały na jednej linii. Zostaw między segmentami przerwę 1–2 mm. Nie grupuj całego zwierzątka.</p>
+<label class="ok"><input type="checkbox"> Dziury w jednej linii!</label>
+</div></article>
+
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Dodaj szczegóły</h3>
+<p>Dodaj oczy, kolce, płetwy albo ogon. Zgrupuj każdy szczegół z segmentem, do którego należy. Pilnuj, żeby nic nie zasłoniło dziury.</p>
+<label class="ok"><input type="checkbox"> Szczegóły dodane!</label>
+</div></article>
+
+<article class="krok"><div class="num">6</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Sprawdź dziury od przodu</h3>
+<p>Ustaw widok od przodu. Przez wszystkie segmenty powinno być widać światło, czyli dziura biegnie przez cały rząd.</p>
+<label class="ok"><input type="checkbox"> Widać światło przez dziury!</label>
+</div></article>
+
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Pokaż zwierzątko i opowiedz, jak będzie się wyginać.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!--
+===== JAK DODAĆ KOLEJNY ETAP LUB LEKCJĘ =====
+1. Skopiuj cały blok <section ...> ... </section> jednego z etapów powyżej.
+2. Wklej go pod spodem i zmień: id="lekcja-6" oraz data-title="Lekcja 6: Twój temat".
+3. Zmień treść kroków. Zakładka z nazwą pojawi się sama.
+Kształt: <span class="sh">📦 Pudełko</span>, otwór: <span class="sh hole">🕳️ Otwór</span>.
+-->
+
+<p class="fin" id="fin">🎉 Brawo! Wszystkie kroki zrobione.</p>
+</main>
+<script>
+(function(){
+var D=document,secs=[].slice.call(D.querySelectorAll('.lekcja')),nav=D.getElementById('nav');
+secs.forEach(function(s){var b=D.createElement('button');b.type='button';b.textContent=s.getAttribute('data-title');b.setAttribute('data-id',s.id);b.addEventListener('click',function(){show(s.id)});nav.appendChild(b)});
+function show(id){secs.forEach(function(s){s.classList.toggle('on',s.id===id)});[].forEach.call(nav.children,function(b){b.setAttribute('aria-current',b.getAttribute('data-id')===id?'true':'false')});try{history.replaceState(null,'','#'+id)}catch(e){}count()}
+function count(){var s=D.querySelector('.lekcja.on'),f=D.getElementById('fin');if(!s)return;var all=s.querySelectorAll('.ok input'),n=0;[].forEach.call(all,function(c){var k=c.closest('.krok');k.classList.toggle('done',[].every.call(k.querySelectorAll('.ok input'),function(x){return x.checked}));if(c.checked)n++});f.style.display=(all.length&&n===all.length)?'block':'none'}
+D.addEventListener('change',count);
+var h=(location.hash||'').slice(1);show(D.getElementById(h)&&D.getElementById(h).classList.contains('lekcja')?h:secs[0].id);
+})();
+</script>
+</body>
+</html>
