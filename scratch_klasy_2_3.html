@@ -43,6 +43,7 @@ p{margin:0 0 10px}
 details{margin-top:8px}
 summary{cursor:pointer;font-weight:800;color:var(--purple)}
 .licznik{font-weight:800;color:var(--muted);margin:0 0 14px}
+.legend{font-size:.95rem;color:var(--muted);margin:0 0 10px}
 .fin{display:none;text-align:center;font:600 1.5rem Fredoka,sans-serif;color:#2e9b5e;padding:10px}
 @media (max-width:520px){body{font-size:18px}.krok{padding:16px;gap:12px}.num{width:40px;height:40px;line-height:40px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -52,13 +53,14 @@ summary{cursor:pointer;font-weight:800;color:var(--purple)}
 <header>
 <h1>Scratch dla klas 2–3</h1>
 <p>Wybierz lekcję i rób kroki po kolei. Kliknij „Zrobione”, gdy skończysz krok.</p>
-<a class="home" href="index.html">Wróć na stronę główną</a>
+<a class="home" href="https://rolha83.github.io/Strona/">Wróć na stronę główną</a>
 </header>
 <main>
+<p class="legend">Poziom lekcji: 🟢 na początek, 🟡 gdy znasz już podstawy, 🔴 dla chętnych na wyzwania.</p>
 <nav id="nav" aria-label="Lekcje"></nav>
 
 <!-- ============ LEKCJA 1 ============ -->
-<section class="lekcja" id="lekcja-1" data-title="Lekcja 1: Kwadrat">
+<section class="lekcja" id="lekcja-1" data-title="🟢 Lekcja 1: Kwadrat">
 <h2>Lekcja 1. Rysujemy kwadrat</h2>
 <div class="cel">🎯 Cel: kotek ma narysować kwadrat. Kwadrat ma 4 takie same boki.</div>
 
@@ -134,7 +136,7 @@ summary{cursor:pointer;font-weight:800;color:var(--purple)}
 </section>
 
 <!-- ============ LEKCJA 2 ============ -->
-<section class="lekcja" id="lekcja-2" data-title="Lekcja 2: Trójkąt">
+<section class="lekcja" id="lekcja-2" data-title="🟢 Lekcja 2: Trójkąt">
 <h2>Lekcja 2. Rysujemy trójkąt</h2>
 <div class="cel">🎯 Cel: kotek ma narysować trójkąt. Trójkąt ma 3 takie same boki.</div>
 
@@ -199,7 +201,7 @@ summary{cursor:pointer;font-weight:800;color:var(--purple)}
 </section>
 
 <!-- ============ LEKCJA 3 ============ -->
-<section class="lekcja" id="lekcja-3" data-title="Lekcja 3: Prostokąt">
+<section class="lekcja" id="lekcja-3" data-title="🟢 Lekcja 3: Prostokąt">
 <h2>Lekcja 3. Rysujemy prostokąt</h2>
 <div class="cel">🎯 Cel: kotek ma narysować prostokąt. Ma dwa dłuższe i dwa krótsze boki.</div>
 
@@ -254,7 +256,7 @@ summary{cursor:pointer;font-weight:800;color:var(--purple)}
 </section>
 
 <!-- ============ LEKCJA 4 ============ -->
-<section class="lekcja" id="lekcja-4" data-title="Lekcja 4: Kolorowy wzór">
+<section class="lekcja" id="lekcja-4" data-title="🟡 Lekcja 4: Kolorowy wzór">
 <h2>Lekcja 4. Kolorowy wzór</h2>
 <div class="cel">🎯 Cel: kwadrat zmienia kolory, a potem robimy z niego wzór.</div>
 
@@ -313,10 +315,229 @@ summary{cursor:pointer;font-weight:800;color:var(--purple)}
 </div></article>
 </section>
 
+<!-- ============ 🟡 LEKCJA 5: PIĘCIOKĄT I SZEŚCIOKĄT ============ -->
+<section class="lekcja" id="lekcja-5" data-title="🟡 Lekcja 5: Pięciokąt i sześciokąt">
+<h2>Lekcja 5. Pięciokąt i sześciokąt</h2>
+<div class="cel">🎯 Cel: kotek rysuje figury o 5 i o 6 bokach. Odkryjesz, jak obliczyć obrót.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Ustaw kotka na start</h3>
+<p>Zbuduj ten zestaw i go <b>kliknij</b>. Kotek wróci na środek, rysunek zniknie i kotek będzie gotowy do rysowania.</p>
+<div class="blocks"><div class="stack"><span class="blk pisak">wyczyść wszystko</span><span class="blk ruch">Idź do x: <i>0</i> y: <i>0</i></span><span class="blk ruch">ustaw kierunek na <i>90</i></span><span class="blk pisak">Przyłóż pisak</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>„wyczyść wszystko” i „Przyłóż pisak” są w grupie Pisak. Pozostałe klocki są w grupie Ruch.</p></details>
+</div></article>
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Pięciokąt</h3>
+<p>Pięciokąt ma <b>5 boków</b>, więc powtarzamy 5 razy. Obrót wynosi <b>72</b> stopnie. Zbuduj zestaw pod klockiem „Przyłóż pisak” i kliknij go.</p>
+<div class="blocks"><div class="c"><span class="blk kontrola">powtórz <i>5</i></span><div class="in"><div class="stack"><span class="blk ruch">przesuń o <i>80</i> kroków</span><span class="blk ruch">obróć ↻ o <i>72</i> stopni</span></div></div></div></div>
+<p><b>Pytanie:</b> skąd się wzięło 72?</p>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Pełny obrót to 360 stopni. Dzielimy go na 5 obrotów: 360 : 5 = 72.</p></details>
+</div></article>
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Sześciokąt</h3>
+<p>Teraz sześciokąt: <b>6 boków</b>, obrót <b>60</b> stopni. Zmień liczby w klocku „powtórz” i w klocku „obróć”. Kliknij „wyczyść wszystko” i narysuj jeszcze raz.</p>
+<div class="blocks"><div class="c"><span class="blk kontrola">powtórz <i>6</i></span><div class="in"><div class="stack"><span class="blk ruch">przesuń o <i>60</i> kroków</span><span class="blk ruch">obróć ↻ o <i>60</i> stopni</span></div></div></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>360 : 6 = 60.</p></details>
+</div></article>
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Znajdź zasadę</h3>
+<p>Uzupełnij w zeszycie: kwadrat (4 boki) obracamy o <b>90</b>, trójkąt (3 boki) o <b>120</b>, pięciokąt (5 boków) o <b>72</b>, sześciokąt (6 boków) o <b>60</b>.</p>
+
+<p><b>Pytanie:</b> jak obliczyć obrót dla figury o 8 bokach?</p>
+<label class="ok"><input type="checkbox"> Znalazłem(-am) zasadę!</label>
+<details><summary>💡 Podpowiedź</summary><p>Podziel 360 przez liczbę boków. 360 : 8 = 45.</p></details>
+</div></article>
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Ośmiokąt</h3>
+<p>Narysuj <b>ośmiokąt</b>. Sam(-a) wybierz liczbę powtórzeń i obrót. Wybierz też kolor pisaka.</p>
+<div class="blocks"><div class="c"><span class="blk kontrola">powtórz <i>8</i></span><div class="in"><div class="stack"><span class="blk ruch">przesuń o <i>50</i> kroków</span><span class="blk ruch">obróć ↻ o <i>45</i> stopni</span></div></div></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Ośmiokąt ma 8 boków. Powtarzamy 8 razy i obracamy o 45 stopni.</p></details>
+</div></article>
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Zawołaj panią i pokaż swoje figury. Powiedz, jak liczysz obrót.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ 🔴 LEKCJA 6: GWIAZDA I KOŁO ============ -->
+<section class="lekcja" id="lekcja-6" data-title="🔴 Lekcja 6: Gwiazda i koło">
+<h2>Lekcja 6. Gwiazda i koło</h2>
+<div class="cel">🎯 Cel: narysujesz gwiazdę i koło. Obrót nie zawsze musi być mały.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Ustaw kotka na start</h3>
+<p>Zbuduj ten zestaw i go <b>kliknij</b>. Kotek wróci na środek, rysunek zniknie i kotek będzie gotowy do rysowania.</p>
+<div class="blocks"><div class="stack"><span class="blk pisak">wyczyść wszystko</span><span class="blk ruch">Idź do x: <i>0</i> y: <i>0</i></span><span class="blk ruch">ustaw kierunek na <i>90</i></span><span class="blk pisak">Przyłóż pisak</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>„wyczyść wszystko” i „Przyłóż pisak” są w grupie Pisak. Pozostałe klocki są w grupie Ruch.</p></details>
+</div></article>
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Gwiazda</h3>
+<p>Zbuduj ten zestaw. Obrót <b>144</b> stopnie jest duży, więc kotek rysuje gwiazdę z pięcioma ramionami.</p>
+<div class="blocks"><div class="c"><span class="blk kontrola">powtórz <i>5</i></span><div class="in"><div class="stack"><span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>144</i> stopni</span></div></div></div></div>
+<p><b>Pytanie:</b> co się stanie, gdy zmienisz 144 na 72?</p>
+<label class="ok"><input type="checkbox"> Mam gwiazdę!</label>
+<details><summary>💡 Podpowiedź</summary><p>Przy 72 stopniach narysujesz pięciokąt, jak w lekcji 5.</p></details>
+</div></article>
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Koło</h3>
+<p>Koło to bardzo dużo krótkich kroków i małych obrotów. Zbuduj zestaw, kliknij „wyczyść wszystko” i narysuj jeszcze raz.</p>
+<div class="blocks"><div class="c"><span class="blk kontrola">powtórz <i>36</i></span><div class="in"><div class="stack"><span class="blk ruch">przesuń o <i>10</i> kroków</span><span class="blk ruch">obróć ↻ o <i>10</i> stopni</span></div></div></div></div>
+<p><b>Pytanie:</b> ile razy kotek się obrócił i ile to jest stopni w sumie?</p>
+<label class="ok"><input type="checkbox"> Mam koło!</label>
+<details><summary>💡 Podpowiedź</summary><p>36 razy po 10 stopni daje 360, czyli pełny obrót.</p></details>
+</div></article>
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Większe koło</h3>
+<p>Zmień liczbę <b>10</b> w klocku „przesuń” na <b>15</b>. Co się stało z kołem? Potem zmień na <b>5</b>.</p>
+
+<label class="ok"><input type="checkbox"> Sprawdziłem(-am)!</label>
+<details><summary>💡 Podpowiedź</summary><p>Dłuższy krok to większe koło, krótszy krok to mniejsze.</p></details>
+</div></article>
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Koło z kątów</h3>
+<p>Zmień „powtórz 36” na <b>18</b> i obrót na <b>20</b>. Dalej wychodzi pełny obrót (18 × 20 = 360), ale figura wygląda inaczej.</p>
+
+<p><b>Pytanie:</b> dlaczego koło jest teraz bardziej kanciaste?</p>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Kotek robi tylko 18 dużych obrotów zamiast 36 małych, więc rysuje 18-kąt.</p></details>
+</div></article>
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Zawołaj panią i pokaż gwiazdę i koło. Opowiedz, co zmieniałeś(-aś).</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ 🟡 LEKCJA 7: DOMEK ============ -->
+<section class="lekcja" id="lekcja-7" data-title="🟡 Lekcja 7: Domek">
+<h2>Lekcja 7. Rysujemy domek</h2>
+<div class="cel">🎯 Cel: kotek rysuje domek z kwadratu i trójkąta, a potem dodajemy drzwi i okno.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Ustaw kotka na start</h3>
+<p>Zbuduj ten zestaw i go <b>kliknij</b>. Kotek wróci na środek, rysunek zniknie i kotek będzie gotowy do rysowania.</p>
+<div class="blocks"><div class="stack"><span class="blk pisak">wyczyść wszystko</span><span class="blk ruch">Idź do x: <i>0</i> y: <i>0</i></span><span class="blk ruch">ustaw kierunek na <i>90</i></span><span class="blk pisak">Przyłóż pisak</span></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>„wyczyść wszystko” i „Przyłóż pisak” są w grupie Pisak. Pozostałe klocki są w grupie Ruch.</p></details>
+</div></article>
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Ściany</h3>
+<p>Narysuj kwadrat o boku 100. To będą ściany domku.</p>
+<div class="blocks"><div class="c"><span class="blk kontrola">powtórz <i>4</i></span><div class="in"><div class="stack"><span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span></div></div></div></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Kwadrat narysował się pod kotkiem, od środka sceny w dół i w prawo.</p></details>
+</div></article>
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Dach</h3>
+<p>Pod kwadratem dołóż klocek „ustaw kierunek na 90” i drugi zestaw „powtórz 3”. Zwróć uwagę: obrót jest w <b>drugą stronę</b> (↺).</p>
+<div class="blocks"><div class="stack"><span class="blk ruch">ustaw kierunek na <i>90</i></span><div class="c"><span class="blk kontrola">powtórz <i>3</i></span><div class="in"><div class="stack"><span class="blk ruch">przesuń o <i>100</i> kroków</span><span class="blk ruch">obróć ↺ o <i>120</i> stopni</span></div></div></div></div></div>
+<p><b>Pytanie:</b> czemu dach wyszedł nad kwadratem?</p>
+<label class="ok"><input type="checkbox"> Mam dach!</label>
+<details><summary>💡 Podpowiedź</summary><p>Obracamy się w lewo (↺), więc kotek idzie do góry.</p></details>
+</div></article>
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Drzwi</h3>
+<p>Chcemy narysować drzwi bez rysowania linii po drodze. Najpierw <b>podnieś pisak</b>, potem przejdź w nowe miejsce i znów przyłóż pisak.</p>
+<div class="blocks"><div class="stack"><span class="blk pisak">Podnieś pisak</span><span class="blk ruch">Idź do x: <i>40</i> y: <i>-100</i></span><span class="blk ruch">ustaw kierunek na <i>0</i></span><span class="blk pisak">Przyłóż pisak</span><span class="blk ruch">przesuń o <i>40</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span><span class="blk ruch">przesuń o <i>20</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span><span class="blk ruch">przesuń o <i>40</i> kroków</span></div></div>
+<label class="ok"><input type="checkbox"> Mam drzwi!</label>
+<details><summary>💡 Podpowiedź</summary><p>„Podnieś pisak” sprawia, że kotek chodzi bez rysowania. „Przyłóż pisak” włącza rysowanie.</p></details>
+</div></article>
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Okno i kolory</h3>
+<p>Narysuj okno (kwadrat o boku 20) na ścianie. Przejdź w to miejsce z podniesionym pisakiem. Możesz zmienić kolor pisaka przed każdą częścią domku.</p>
+<div class="blocks"><div class="stack"><span class="blk pisak">Podnieś pisak</span><span class="blk ruch">Idź do x: <i>70</i> y: <i>-30</i></span><span class="blk ruch">ustaw kierunek na <i>90</i></span><span class="blk pisak">Przyłóż pisak</span><div class="c"><span class="blk kontrola">powtórz <i>4</i></span><div class="in"><div class="stack"><span class="blk ruch">przesuń o <i>20</i> kroków</span><span class="blk ruch">obróć ↻ o <i>90</i> stopni</span></div></div></div></div><span class="blk pisak">Ustaw kolor pisaka na <i>🎨</i></span></div>
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+<details><summary>💡 Podpowiedź</summary><p>Okno ma boki po 20 kroków. Mieści się w kwadracie ściany, bo ściana ma 100.</p></details>
+</div></article>
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Zawołaj panią i pokaż domek. Powiedz, kiedy użyłeś(-aś) klocka „Podnieś pisak”.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
+<!-- ============ 🟡 LEKCJA 8: MÓJ OBRAZEK ============ -->
+<section class="lekcja" id="lekcja-8" data-title="🟡 Lekcja 8: Mój obrazek">
+<h2>Lekcja 8. Mój obrazek</h2>
+<div class="cel">🎯 Cel: z poznanych figur zbudujesz własny rysunek, np. rakietę, choinkę, kwiatek albo ulicę z domkami.</div>
+
+<article class="krok"><div class="num">1</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Wybierz pomysł</h3>
+<p>Wybierz jeden pomysł albo wymyśl własny.</p>
+<div class="shapes"><span class="sh">🚀 Rakieta</span><span class="sh">🎄 Choinka</span><span class="sh">🌼 Kwiatek</span><span class="sh">🏘️ Ulica z domkami</span><span class="sh">⭐ Własny</span></div>
+<label class="ok"><input type="checkbox"> Mam pomysł!</label>
+</div></article>
+<article class="krok"><div class="num">2</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Narysuj plan w zeszycie</h3>
+<p>Narysuj swój obrazek i zaznacz, z jakich figur będzie się składał (kwadrat, trójkąt, koło, gwiazda). Użyj co najmniej <b>3 figur</b>.</p>
+
+<label class="ok"><input type="checkbox"> Plan narysowany!</label>
+<details><summary>💡 Podpowiedź</summary><p>Plan nie musi być ładny. Ma pokazać, z czego zrobisz obrazek.</p></details>
+</div></article>
+<article class="krok"><div class="num">3</div><div class="tresc">
+<span class="lvl g">Dla wszystkich</span>
+<h3>Zbuduj pierwszą figurę</h3>
+<p>Zacznij od zestawu startowego, a potem zbuduj pierwszą figurę. Kliknij zestaw i sprawdź, czy wyszło tak, jak chcesz.</p>
+<div class="blocks"><div class="stack"><span class="blk pisak">wyczyść wszystko</span><span class="blk ruch">Idź do x: <i>0</i> y: <i>0</i></span><span class="blk ruch">ustaw kierunek na <i>90</i></span><span class="blk pisak">Przyłóż pisak</span></div></div>
+<label class="ok"><input type="checkbox"> Pierwsza figura gotowa!</label>
+<details><summary>💡 Podpowiedź</summary><p>Zestaw startowy zawsze zaczyna od środka sceny.</p></details>
+</div></article>
+<article class="krok"><div class="num">4</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Przesuwaj się bez rysowania</h3>
+<p>Do kolejnej figury przejdź z <b>podniesionym pisakiem</b>: „Podnieś pisak”, „Idź do x: y:”, „Przyłóż pisak”.</p>
+<div class="blocks"><div class="stack"><span class="blk pisak">Podnieś pisak</span><span class="blk ruch">Idź do x: <i>-100</i> y: <i>50</i></span><span class="blk pisak">Przyłóż pisak</span></div></div>
+<label class="ok"><input type="checkbox"> Przeszedłem(-am) w nowe miejsce!</label>
+<details><summary>💡 Podpowiedź</summary><p>Liczby x i y wybierz sam(-a). Dodatnie y to góra sceny, ujemne to dół.</p></details>
+</div></article>
+<article class="krok"><div class="num">5</div><div class="tresc">
+<span class="lvl y">Dla chętnych</span>
+<h3>Dodaj kolory</h3>
+<p>Użyj co najmniej <b>dwóch kolorów</b>. Możesz też zmienić grubość linii.</p>
+<div class="blocks"><span class="blk pisak">Ustaw kolor pisaka na <i>🎨</i></span><span class="blk pisak">Ustaw rozmiar pisaka na <i>3</i></span></div>
+<label class="ok"><input type="checkbox"> Mam kolory!</label>
+</div></article>
+<article class="krok"><div class="num">6</div><div class="tresc">
+<span class="lvl r">Wyzwanie</span>
+<h3>Dodaj coś ekstra</h3>
+<p>Dodaj figurę, której jeszcze nie rysowaliśmy, albo narysuj coś w środku innej figury.</p>
+
+<label class="ok"><input type="checkbox"> Zrobione!</label>
+</div></article>
+<article class="krok"><div class="num">★</div><div class="tresc">
+<h3>Pokaż nauczycielowi</h3>
+<p>Zawołaj panią i pokaż obrazek. Opowiedz, z jakich figur jest zrobiony.</p>
+<label class="ok"><input type="checkbox"> Pokazałem(-am)!</label>
+</div></article>
+</section>
+
 <!--
 ===== JAK DODAĆ KOLEJNĄ LEKCJĘ =====
 1. Skopiuj cały blok <section ...> ... </section> powyżej.
-2. Wklej go pod spodem i zmień: id="lekcja-5" oraz data-title="Lekcja 5: Twój temat".
+2. Wklej go pod spodem i zmień: id="lekcja-9" oraz data-title="Lekcja 9: Twój temat".
 3. Zmień treść kroków. Zakładka z nazwą lekcji pojawi się sama.
 Klocki: <span class="blk ruch">…</span> (niebieski), class="blk pisak" (zielony), class="blk kontrola" (pomarańczowy).
 Liczba w klocku: <i>90</i>.
