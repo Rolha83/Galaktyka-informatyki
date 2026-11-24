@@ -49,8 +49,6 @@ summary{cursor:pointer;font-weight:800;color:var(--purple)}
 .sh{background:#fff3c9;border-radius:999px;padding:6px 16px;font-weight:800}
 .scratchbox{margin:0 0 22px}
 .scratchbox button,.scratchbox a{font:600 1.05rem Fredoka,Nunito,system-ui,sans-serif;border:3px solid var(--purple);background:#fff;color:var(--purple);border-radius:999px;padding:8px 20px;cursor:pointer;text-decoration:none;display:inline-block;margin:0 8px 8px 0}
-.scratchbox iframe{display:none;width:100%;height:75vh;min-height:480px;border:3px solid var(--purple);border-radius:16px;background:#fff}
-.scratchbox.open iframe{display:block}
 @media (max-width:520px){body{font-size:18px}.krok{padding:16px;gap:12px}.num{width:40px;height:40px;line-height:40px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -65,11 +63,9 @@ summary{cursor:pointer;font-weight:800;color:var(--purple)}
 <p class="legend">Poziom lekcji: 🟢 na początek, 🟡 gdy znasz już podstawy, 🔴 dla chętnych na wyzwania.</p>
 <nav id="nav" aria-label="Lekcje"></nav>
 
-<div class="scratchbox" id="scratchbox">
-<button type="button" id="scratchBtn">🐱 Otwórz Scratcha tutaj</button>
-<a href="https://turbowarp.org/editor" target="_blank" rel="noopener">Otwórz w nowej karcie</a>
-<p class="legend">Dodaj rozszerzenie „Pisak” (niebieski przycisk w lewym dolnym rogu). Zapisz pracę: Plik → Zapisz na komputerze.</p>
-<iframe id="scratchFrame" title="Scratch" allowfullscreen></iframe>
+<div class="scratchbox">
+<a href="https://turbowarp.org/editor" target="_blank" rel="noopener">🐱 Otwórz Scratcha w nowej karcie</a>
+<p class="legend">Dodaj rozszerzenie „Pisak” (niebieski przycisk w lewym dolnym rogu). Zapisz pracę: Plik → Zapisz na komputerze. Wróć do tej karty, żeby czytać kroki.</p>
 </div>
 
 <!-- ▼▼▼ TUTAJ WKLEJ SWOJE LEKCJE 1–8 (bloki <section class="lekcja" ...> ... </section>) ▼▼▼ -->
@@ -757,10 +753,6 @@ function show(id){secs.forEach(function(s){s.classList.toggle('on',s.id===id)});
 function count(){var s=D.querySelector('.lekcja.on'),f=D.getElementById('fin');if(!s)return;var all=s.querySelectorAll('.ok input'),n=0;[].forEach.call(all,function(c){var k=c.closest('.krok');k.classList.toggle('done',c.checked);if(c.checked)n++});f.style.display=(all.length&&n===all.length)?'block':'none'}
 D.addEventListener('change',count);
 var h=(location.hash||'').slice(1);show(D.getElementById(h)&&D.getElementById(h).classList.contains('lekcja')?h:secs[0].id);
-var sb=D.getElementById('scratchbox'),sf=D.getElementById('scratchFrame'),sbtn=D.getElementById('scratchBtn');
-sbtn.addEventListener('click',function(){
-if(!sb.classList.contains('open')){if(!sf.src)sf.src='https://turbowarp.org/editor';sb.classList.add('open');sbtn.textContent='⬆️ Schowaj Scratcha'}
-else{sb.classList.remove('open');sbtn.textContent='🐱 Otwórz Scratcha tutaj'}});
 })();
 </script>
 </body>
